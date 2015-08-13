@@ -1,10 +1,6 @@
 ﻿<?php $this->load->helper('url');?>
 <html>
 	<head>
-	
-	<link rel="stylesheet" type="text/css" media="screen"
-	href="http://localhost/gestion/css/gestion.css" />
-	
 		<title>Projet</title>
 		<!-- 
 		<script>
