@@ -4,7 +4,7 @@
 		<title>Menu</title>
 	</head>
 	<body>
-		<p>Hello cela vient de github</p>
+
 		<h3>Projets</h3>
 		<table>
 			<tr>

@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/gestion/';
+$config['base_url']	= 'http://localhost/test-git/TestGestion/';
 
 /*
 |--------------------------------------------------------------------------
