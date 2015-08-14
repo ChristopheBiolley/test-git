@@ -32,7 +32,7 @@ if($id==0)
 	<input type="hidden" name=id value="<?php echo $id;?>"/>
 	<input type="hidden" name="create" value="<?php echo date ('Y-m-d')?>"/>
 	<input type="hidden" name="status" value="1"/>
-	<input type="hidden" name="URL" value="<?php echo current_url();?>"/>
+	<!-- <input type="hidden" name="URL" value="<?php echo current_url();?>"/> -->
 	Titre : <input type="text" name="title" value="<?php echo $title;?>"/><br/>
 	Description : <br/>
 	<textarea name="descr"><?php echo $descr;?></textarea><br/>
@@ -61,7 +61,7 @@ else
 
 <form method="post" action="<?php echo $url;?>">
 	<input type="hidden" name=id value="<?php echo $id;?>"/>		
-	<input type="hidden" name="URL" value="<?php echo current_url();?>"/>
+	<!-- <input type="hidden" name="URL" value="<?php echo current_url();?>"/> -->
 	Titre : <input type="text" name="title" value="<?php echo $title;?>"/><br/>
 	Description : <br/>
 	<textarea name="descr"><?php echo $descr;?></textarea><br/>
