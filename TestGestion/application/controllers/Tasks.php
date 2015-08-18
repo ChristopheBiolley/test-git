@@ -95,7 +95,7 @@ public function add()
     	
     	redirect(base_url("Project/Detail/".$project));
     }
-
+/*
     public function AddManager() 
     {
         
@@ -110,7 +110,7 @@ public function add()
     {
        
     }
-
+*/
     public function Detail($id) 
     {
     	$this->load->model('Task_model');

@@ -48,8 +48,8 @@
 			<?php endforeach;?>					
 		</table>
 		<br>
-		
-		<h3>Tâches</h3>
+		<div class="task">
+		<h3>Tâches du projet</h3>
 		<table>
 			<tr>
 				<th>Titre</th>
@@ -75,9 +75,10 @@
 			</tr>				
 			<?php endforeach;?>
 		</table>
-		<a href="<?php echo base_url();?>tasks/form/<?php echo $this->uri->segment(3);?>">Nouveau</a>
-		<br/>
-
+		<a href="<?php echo base_url();?>tasks/form/<?php echo $this->uri->segment(3);?>">Nouvelle tâche</a>
+		</div>
+		<br/><br/>
+<!-- 
 		<h3>Commentaires</h3>	
 		<table>
 			<tr>
@@ -101,7 +102,7 @@
 			</tr>	
 			<?php endforeach;?>		
 		</table>  
-			<br/>	
+			<br/>	 -->
 	
 			<a href="http://localhost/test-git/TestGestion/">Retour</a>
 	</body>

@@ -38,6 +38,9 @@
 			<?php endforeach;?>					
 		</table>
 		<br>
+		<a href="<?php echo base_url();?>projects/detail/<?php echo $row->project_id ?>">Retour</a>
+		<br/>
+		<a href="<?php echo base_url();?>">Menu</a>
 <!-- 
 		<h3>Commentaires</h3>	
 		<table>
