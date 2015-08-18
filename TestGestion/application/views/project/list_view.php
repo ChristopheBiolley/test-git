@@ -4,10 +4,10 @@
 		<title>Menu</title>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/gestion.css">
 	</head>
-	<body class="test">
+	<body>
 
 		<h3>Projets</h3>
-		<table>
+		<table class="menu">
 			<tr>
 				<th>Titre</th>
 				<th>Description</th>
@@ -23,19 +23,18 @@
 			<!-- 	<td><?php echo $row->author_user_id;?></td>
 				<td><?php echo $row->status_id;?></td>	 -->
 				<td>
-				<?php $onclick = array('onclick'=>"return confirm('Are you sure?')");?>
+				<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
 				<?=anchor(base_url()."projects/delete/".$row->project_id, 'Delete', $onclick);?>
-				<?php $onclick = array('onclick'=>"return confirm('Are you sure?')");?>
 				</td>	
 			</tr>
 			<?php endforeach;?>
 		</table>			
 		<br/>
-		<a href="<?php echo base_url();?>projects/form">Nouveau projet</a>
+		<a class="btn" href="<?php echo base_url();?>projects/form">Nouveau projet</a>
 		
 		<br/>
 		<h3>Tâches</h3>
-		<table>
+		<table class="menu">
 			<tr>
 				<th>Titre</th>
 				<th>Description</th>
@@ -50,10 +49,9 @@
 				<td><?php echo $row->create_date;?></td>
 			<!-- 	<td><?php echo $row->author_user_id;?></td>
 				<td><?php echo $row->status_id;?></td>	 -->
-				<td>
-				<?php $onclick = array('onclick'=>"return confirm('Are you sure?')");?>
-				<?=anchor(base_url()."tasks/delete/".$row->task_id, 'Delete', $onclick);?>
-				<?php $onclick = array('onclick'=>"return confirm('Are you sure?')");?>
+				<td >
+				<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
+				<?=anchor(base_url()."tasks/delete/".$row->task_id, 'Delete', $onclick);?>				
 				</td>	
 			</tr>
 			<?php endforeach;?>

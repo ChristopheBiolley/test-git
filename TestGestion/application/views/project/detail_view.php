@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>Projet</title>
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/gestion.css">
 		<!-- 
 		<script>
 			function Edition()
@@ -22,7 +23,7 @@
 	</head>
 	<body>
 		<h3>Projet</h3>
-		<table>
+		<table class="detail">
 			<tr>
 				<th>Titre</th>
 				<th>Description</th>
@@ -43,14 +44,14 @@
 				<td><?php echo $row->end_date;?></td>
 				<td><?php echo $row->client_id;?></td>
 				<td><?php echo $row->status_id;?></td>
-				<td><a href="<?php echo base_url();?>projects/form/<?php echo $row->project_id ?>">edition</a></td>	
+				<td><a class="btn" href="<?php echo base_url();?>projects/form/<?php echo $row->project_id ?>">edition</a></td>	
 			</tr>	
 			<?php endforeach;?>					
 		</table>
 		<br>
 		<div class="task">
 		<h3>Tâches du projet</h3>
-		<table>
+		<table class="detail">
 			<tr>
 				<th>Titre</th>
 				<th>Description</th>
@@ -66,14 +67,14 @@
 				<td><?php echo $row->author_user_id;?></td>
 				<td><?php echo $row->status_id;?></td>	
 				<td>
-				<?php $onclick = array('onclick'=>"return confirm('Are you sure?')");?>
+				<?php $onclick = array('class="btn"onclick'=>"return confirm('Are you sure?')");?>
 				<?=anchor(base_url()."tasks/delete/".$row->task_id, 'Delete', $onclick);?>
 				<?php $onclick = array('onclick'=>"return confirm('Are you sure?')");?>
 				</td>					
 			</tr>				
 			<?php endforeach;?>
 		</table>
-		<a href="<?php echo base_url();?>tasks/form/<?php echo $this->uri->segment(3);?>">Nouvelle tâche</a>
+		<a class="btn" href="<?php echo base_url();?>tasks/form/<?php echo $this->uri->segment(3);?>">Nouvelle tâche</a>
 		</div>
 		<br/><br/>
 <!-- 
@@ -102,6 +103,6 @@
 		</table>  
 			<br/>	 -->
 	
-			<a href="http://localhost/test-git/TestGestion/">Retour</a>
+			<a class="btn" href="http://localhost/test-git/TestGestion/">Retour</a>
 	</body>
 </html>

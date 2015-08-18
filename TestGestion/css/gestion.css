@@ -1,6 +1,36 @@
 
-.test
+
+tr
 {
-	background-color: red;
+	margin-bottom: 5px;
+	margin-top: 5px;
 }
 
+
+
+.btn
+{
+	text-decoration: none;
+	color:black;
+	border-style: outset;
+	border-color: grey;
+	border-radius:3px;
+	padding:3px;
+}
+
+body
+{
+	margin-left:10px;
+}
+
+.menu
+{
+	width:30%;	
+	height:10%;
+}
+
+.detail
+{
+	width:40%;	
+	height:10%;
+}
