@@ -1,12 +1,9 @@
 
-
 tr
 {
 	margin-bottom: 5px;
 	margin-top: 5px;
 }
-
-
 
 .btn
 {
@@ -16,6 +13,7 @@ tr
 	border-color: grey;
 	border-radius:3px;
 	padding:3px;
+	background-color: #F0F0F0;
 }
 
 body
