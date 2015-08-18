@@ -7,7 +7,7 @@ class Task_model extends CI_Model
     	parent::__construct();
     }
 
-    public function get_tasks($id,$type) 
+    public function get_tasks($id=0,$type="") 
     {
     	$this->load->database();
     	if($id==0)
@@ -83,23 +83,42 @@ class Task_model extends CI_Model
     		return $data;
     }
 
-    public function set_task($title,$descr,$author,$date,$status,$allowed,$estimated,$project)
+    public function set_task($id=0)
     {
-    	$this->load->database();
-    	$this->load->helper('url');
+    	
+    	if($id==0)
+    	{
+    		$data = array(
+    				
+    				'title'=>$this->input->post('title'),
+    				'description'=>$this->input->post('descr'),
+    				'create_date'=>$this->input->post('create'),
+    				'status_id'=>$this->input->post('status'),
+    				'author_user_id'=>$this->input->post('author'),
+    				'project_id'=>$this->input->post('project')
+    		);
+    		$this->db->insert('gestion.task', $data);
+    	}
+    	else
+    	{
+    		$data = array(
+    			'title'=>$this->input->post('title'),
+    			'description'=>$this->input->post('descr'),		
+    			'author_user_id'=>$this->input->post('author'),
+    			'start_date'=>$this->input->post('start'),	
+    			'status_id'=>$this->input->post('status'),
+    			'time_allowed'=>$this->input->post('allowed'),
+    			'end_date'=>$this->input->post('end'),
+    			'validation_date'=>$this->input->post('validation'),    				
+    			'time_estimate'=>$this->input->post('estimate'),
+    			'time_real'=>$this->input->post('real')
+    		);
+    		$this->db->where('task_id', $id);
+    		$this->db->update('gestion.task', $data);
+    	}   	
     	
 
-    	$data = array(
-    			'title'=>$title,
-    			'description'=>$descr,
-    			'create_date'=>$date,
-    			'author_user_id'=>$author,
-    			'status_id'=>$status,
-    			'time_allowed'=>$allowed,
-    			'project_id'=>$project,
-    			'time_estimate'=>$estimated
-    	);
-    	$this->db->insert('gestion.task', $data);
+    	
     }
     
     public function del_task($id) 

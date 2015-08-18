@@ -18,7 +18,7 @@
 					document.getElementById("Edit").style.display="none";
 				}
 			}
-		</script> -->
+		</script>-->
 	</head>
 	<body>
 		<h3>Projet</h3>
@@ -48,7 +48,7 @@
 			<?php endforeach;?>					
 		</table>
 		<br>
-		<!-- 
+		
 		<h3>Tâches</h3>
 		<table>
 			<tr>
@@ -74,30 +74,10 @@
 				</td>			
 			</tr>				
 			<?php endforeach;?>
-		</table> 
+		</table>
+		<a href="<?php echo base_url();?>tasks/form/<?php echo $this->uri->segment(3);?>">Nouveau</a>
 		<br/>
-		<form method="post" action="<?php echo base_url(); ?>tasks/news">			
-			<input type="hidden" name="date" value="<?php echo date ('Y-m-d')?>"/>
-			<input type="hidden" name="status" value="1"/>
-			<input type="hidden" name="project" value="<?php echo $this->uri->segment(3);?>"/>
-			Titre : <input type="text" name="title" required/><br/>
-			Description : <br/>
-			<textarea name="descr" required></textarea><br/>
-			Auteur:
-			<select name="author">
-			<?php foreach ($user as $row): ?>
-				  <option value="<?php echo $row->user_id?>"><?php echo $row->prename." ".$row->name?></option>
-			<?php endforeach;?>
-			</select> <br/>
-			
-			Temps alloué:<input type="date" name="allowed"><br/>
-			Temps éstimé:<input type="date" name="estimated">
-			
-			<br/>						
-			<input type="submit" value="OK"/>
-		</form>
-	
-		<br/>
+
 		<h3>Commentaires</h3>	
 		<table>
 			<tr>
@@ -120,23 +100,9 @@
 				</td>	
 			</tr>	
 			<?php endforeach;?>		
-		</table> 
+		</table>  
 			<br/>	
-		
-			<form method="post" action="<?php echo base_url(); ?>comments/news">			
-				<input type="hidden" name="date" value="<?php echo date ('Y-m-d')?>"/>
-				<input type="hidden" name="id" value="<?php echo $this->uri->segment(3);?>"/>
-				<input type="hidden" name="type" value="<?php echo $this->uri->segment(1);?>"/>
-				Commentaire : <br/>
-				<textarea name="descr" required></textarea><br/>
-				Auteur:
-				<select name="author">
-				<?php foreach ($user as $row): ?>
-					  <option value="<?php echo $row->user_id?>"><?php echo $row->prename." ".$row->name?></option>
-				<?php endforeach;?>
-				</select> <br/>								
-				<input type="submit" value="OK"/>
-			</form> -->
+	
 			<a href="http://localhost/test-git/TestGestion/">Retour</a>
 	</body>
 </html>
