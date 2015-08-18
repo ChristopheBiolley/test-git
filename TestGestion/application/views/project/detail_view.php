@@ -66,12 +66,10 @@
 				<td><?php echo $row->author_user_id;?></td>
 				<td><?php echo $row->status_id;?></td>	
 				<td>
-					<form method="post" action="<?php echo base_url(); ?>tasks/delete">
-						<input type="hidden" name="id" value="<?php echo $row->task_id;?>"/>
-						<input type="hidden" name="project" value="<?php echo $this->uri->segment(3);?>"/>
-						<input type="submit" value="Delete"/>
-					</form>
-				</td>			
+				<?php $onclick = array('onclick'=>"return confirm('Are you sure?')");?>
+				<?=anchor(base_url()."tasks/delete/".$row->task_id, 'Delete', $onclick);?>
+				<?php $onclick = array('onclick'=>"return confirm('Are you sure?')");?>
+				</td>					
 			</tr>				
 			<?php endforeach;?>
 		</table>

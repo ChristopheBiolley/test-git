@@ -83,17 +83,12 @@ public function add()
     	}   
     }
 
-    public function Delete() 
+    public function delete($id) 
     {
-    	$this->load->model('Task_model');
-    	$this->load->helper('url');
-
-    	$id=$_POST['id'];
-    	$project=$_POST['project'];
     	
-    	$this->Task_model->del_task($id); 
+    	$this->Task_model->del_task($id);
     	
-    	redirect(base_url("Project/Detail/".$project));
+     	redirect(base_url());
     }
 /*
     public function AddManager() 

@@ -123,10 +123,15 @@ class Task_model extends CI_Model
     
     public function del_task($id) 
     {
-    	$this->load->database();
-
-    	 
-    	$this->db->delete('gestion.task', array('task_id' => $id));
+    	
+   	 if($id==0)
+    	{
+    		
+    	}
+    	else 
+    	{
+    		$this->db->delete('gestion.task', array('task_id' => $id));
+    	}    	  
     }
   
     public function add_manager() 
