@@ -1,17 +1,6 @@
-@CHARSET "ISO-8859-1";
 
-table
+.test
 {
-	border:2px black solid;
+	background-color: red;
 }
 
-title
-{
-	color:red;
-}
-
-td
-{
-	border:2px black solid;
-	margin-left: 10px;
-}

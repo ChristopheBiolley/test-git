@@ -2,8 +2,9 @@
 <html>
 	<head>		
 		<title>Menu</title>
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/gestion.css">
 	</head>
-	<body>
+	<body class="test">
 
 		<h3>Projets</h3>
 		<table>
