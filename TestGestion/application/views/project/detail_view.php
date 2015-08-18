@@ -1,11 +1,8 @@
 ﻿<?php $this->load->helper('url');?>
 <html>
 	<head>
-	
-	<link rel="stylesheet" type="text/css" media="screen"
-	href="http://localhost/gestion/css/gestion.css" />
-	
 		<title>Projet</title>
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/gestion.css">
 		<!-- 
 		<script>
 			function Edition()
@@ -22,11 +19,11 @@
 					document.getElementById("Edit").style.display="none";
 				}
 			}
-		</script> -->
+		</script>-->
 	</head>
 	<body>
 		<h3>Projet</h3>
-		<table>
+		<table class="detail">
 			<tr>
 				<th>Titre</th>
 				<th>Description</th>
@@ -47,14 +44,14 @@
 				<td><?php echo $row->end_date;?></td>
 				<td><?php echo $row->client_id;?></td>
 				<td><?php echo $row->status_id;?></td>
-				<td><a href="<?php echo base_url();?>projects/form/<?php echo $row->project_id ?>">edition</a></td>	
+				<td><a class="btn" href="<?php echo base_url();?>projects/form/<?php echo $row->project_id ?>">edition</a></td>	
 			</tr>	
 			<?php endforeach;?>					
 		</table>
 		<br>
-		<!-- 
-		<h3>Tâches</h3>
-		<table>
+		<div class="task">
+		<h3>Tâches du projet</h3>
+		<table class="detail">
 			<tr>
 				<th>Titre</th>
 				<th>Description</th>
@@ -70,38 +67,17 @@
 				<td><?php echo $row->author_user_id;?></td>
 				<td><?php echo $row->status_id;?></td>	
 				<td>
-					<form method="post" action="<?php echo base_url(); ?>tasks/delete">
-						<input type="hidden" name="id" value="<?php echo $row->task_id;?>"/>
-						<input type="hidden" name="project" value="<?php echo $this->uri->segment(3);?>"/>
-						<input type="submit" value="Delete"/>
-					</form>
-				</td>			
+				<?php $onclick = array('class="btn"onclick'=>"return confirm('Are you sure?')");?>
+				<?=anchor(base_url()."tasks/delete/".$row->task_id, 'Delete', $onclick);?>
+				<?php $onclick = array('onclick'=>"return confirm('Are you sure?')");?>
+				</td>					
 			</tr>				
 			<?php endforeach;?>
-		</table> 
-		<br/>
-		<form method="post" action="<?php echo base_url(); ?>tasks/news">			
-			<input type="hidden" name="date" value="<?php echo date ('Y-m-d')?>"/>
-			<input type="hidden" name="status" value="1"/>
-			<input type="hidden" name="project" value="<?php echo $this->uri->segment(3);?>"/>
-			Titre : <input type="text" name="title" required/><br/>
-			Description : <br/>
-			<textarea name="descr" required></textarea><br/>
-			Auteur:
-			<select name="author">
-			<?php foreach ($user as $row): ?>
-				  <option value="<?php echo $row->user_id?>"><?php echo $row->prename." ".$row->name?></option>
-			<?php endforeach;?>
-			</select> <br/>
-			
-			Temps alloué:<input type="date" name="allowed"><br/>
-			Temps éstimé:<input type="date" name="estimated">
-			
-			<br/>						
-			<input type="submit" value="OK"/>
-		</form>
-	
-		<br/>
+		</table>
+		<a class="btn" href="<?php echo base_url();?>tasks/form/<?php echo $this->uri->segment(3);?>">Nouvelle tâche</a>
+		</div>
+		<br/><br/>
+<!-- 
 		<h3>Commentaires</h3>	
 		<table>
 			<tr>
@@ -124,23 +100,9 @@
 				</td>	
 			</tr>	
 			<?php endforeach;?>		
-		</table> 
-			<br/>	
-		
-			<form method="post" action="<?php echo base_url(); ?>comments/news">			
-				<input type="hidden" name="date" value="<?php echo date ('Y-m-d')?>"/>
-				<input type="hidden" name="id" value="<?php echo $this->uri->segment(3);?>"/>
-				<input type="hidden" name="type" value="<?php echo $this->uri->segment(1);?>"/>
-				Commentaire : <br/>
-				<textarea name="descr" required></textarea><br/>
-				Auteur:
-				<select name="author">
-				<?php foreach ($user as $row): ?>
-					  <option value="<?php echo $row->user_id?>"><?php echo $row->prename." ".$row->name?></option>
-				<?php endforeach;?>
-				</select> <br/>								
-				<input type="submit" value="OK"/>
-			</form> -->
-			<a href="http://localhost/test-git/TestGestion/">Retour</a>
+		</table>  
+			<br/>	 -->
+	
+			<a class="btn" href="http://localhost/test-git/TestGestion/">Retour</a>
 	</body>
 </html>

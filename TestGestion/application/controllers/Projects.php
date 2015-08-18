@@ -6,6 +6,7 @@ class Projects extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Project_model');
+		$this->load->model('Task_model');
 		$this->load->model('User_model');
 		$this->load->model('Client_model');
 		$this->load->helper('url');
@@ -111,6 +112,7 @@ class Projects extends CI_Controller
     {
     	
     	$data['project'] = $this->Project_model->get_projects();
+    	$data['task'] = $this->Task_model->get_tasks();
     	
     	 $this->load->view('templates/header');
     	$this->load->view('project/list_view', $data);
