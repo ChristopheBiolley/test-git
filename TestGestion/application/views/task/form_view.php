@@ -1,3 +1,6 @@
+<head>
+	<title>Formulaire</title>
+</head>
 <script>
 	function goback()
 	{

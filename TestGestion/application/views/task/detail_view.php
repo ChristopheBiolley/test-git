@@ -2,11 +2,11 @@
 <html>
 	<head>
 		<title>Tâche</title>
-		
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/gestion.css">
 	</head>
 	<body>
 		<h3>Tâche</h3>
-		<table>
+		<table class="detail">
 			<tr>
 				<th>Titre</th>
 				<th>Description</th>
@@ -33,14 +33,15 @@
 				<td><?php echo $row->validation_date;?></td>
 				<td><?php echo $row->time_estimate;?></td>
 				<td><?php echo $row->time_real;?></td>
-				<td><a href="<?php echo base_url();?>tasks/form/<?php echo $row->task_id ?>">edition</a></td>	
+				<td><a class="btn" href="<?php echo base_url();?>tasks/form/<?php echo $row->task_id ?>">edition</a></td>	
 			</tr>	
 			<?php endforeach;?>					
 		</table>
 		<br>
-		<a href="<?php echo base_url();?>projects/detail/<?php echo $row->project_id ?>">Retour</a>
+		<a class="btn" href="<?php echo base_url();?>projects/detail/<?php echo $row->project_id ?>">Retour</a>
 		<br/>
-		<a href="<?php echo base_url();?>">Menu</a>
+		<br/>
+		<a class="btn" href="<?php echo base_url();?>">Menu</a>
 <!-- 
 		<h3>Commentaires</h3>	
 		<table>
