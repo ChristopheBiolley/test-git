@@ -107,11 +107,7 @@ public function add()
     }
 */
     public function Detail($id) 
-    {
-    	$this->load->model('Task_model');
-    	$this->load->model('Comment_model');
-    	$this->load->model('User_model');
-    	 
+    {    	 
     	$type="task";
  	 
     	$data['task'] = $this->Task_model->get_tasks($id,$type);

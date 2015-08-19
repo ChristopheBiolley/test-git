@@ -38,7 +38,7 @@
 			<?php endforeach;?>					
 		</table>
 		<br>
-		<a class="btn" href="<?php echo base_url();?>projects/detail/<?php echo $row->project_id ?>">Retour</a>
+		<a class="btn" href="<?php echo base_url();?>projects/detail/<?php echo $row->project_id ?>">Retour au projet</a>
 		<br/>
 		<br/>
 		<a class="btn" href="<?php echo base_url();?>">Menu</a>

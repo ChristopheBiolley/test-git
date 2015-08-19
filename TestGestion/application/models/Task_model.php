@@ -5,11 +5,11 @@ class Task_model extends CI_Model
     public function __construct() 
     {
     	parent::__construct();
+    	$this->load->database();
     }
 
     public function get_tasks($id=0,$type="") 
-    {
-    	$this->load->database();
+    {    	
     	if($id==0)
     	{
     		$query = $this->db->get('gestion.task');
@@ -84,8 +84,7 @@ class Task_model extends CI_Model
     }
 
     public function set_task($id=0)
-    {
-    	
+    {    	
     	if($id==0)
     	{
     		$data = array(
@@ -115,25 +114,21 @@ class Task_model extends CI_Model
     		);
     		$this->db->where('task_id', $id);
     		$this->db->update('gestion.task', $data);
-    	}   	
-    	
-
-    	
+    	}  	 	
     }
     
     public function del_task($id) 
-    {
-    	
-   	 if($id==0)
-    	{
-    		
-    	}
-    	else 
-    	{
-    		$this->db->delete('gestion.task', array('task_id' => $id));
-    	}    	  
+    {    	
+	   	if($id==0)
+	    {
+	    		
+	    }
+	    else 
+	    {
+	    	$this->db->delete('gestion.task', array('task_id' => $id));
+	    }    	  
     }
-  
+    /*  
     public function add_manager() 
     {
        
@@ -142,5 +137,5 @@ class Task_model extends CI_Model
     public function del_manager() 
     {
        
-    }
+    }*/
 }

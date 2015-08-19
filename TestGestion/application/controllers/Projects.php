@@ -121,11 +121,6 @@ class Projects extends CI_Controller
     
     public function detail($project_id) 
     {
-    	$this->load->model('Project_model');
-    	$this->load->model('Task_model');
-    	$this->load->model('User_model');
-    	$this->load->model('Client_model');
-    	$this->load->model('Comment_model');
     	
     	$type="project";
     	
@@ -137,7 +132,7 @@ class Projects extends CI_Controller
     	
     	$data['client'] = $this->Client_model->get_clients();
     	
-    	$data['comment']= $this->Comment_model->get_comments($project_id,$type); 
+    	//$data['comment']= $this->Comment_model->get_comments($project_id,$type); 
     	 	
     	$this->load->view('templates/header');
     	$this->load->view('project/detail_view', $data);  

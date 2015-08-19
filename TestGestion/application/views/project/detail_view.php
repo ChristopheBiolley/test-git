@@ -103,6 +103,6 @@
 		</table>  
 			<br/>	 -->
 	
-			<a class="btn" href="http://localhost/test-git/TestGestion/">Retour</a>
+			<a class="btn" href="http://localhost/test-git/TestGestion/">Menu</a>
 	</body>
 </html>

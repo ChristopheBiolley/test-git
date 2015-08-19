@@ -28,10 +28,10 @@
 				</td>	
 			</tr>
 			<?php endforeach;?>
-		</table>			
-		<br/>
+		</table>	
+		<br/>	
 		<a class="btn" href="<?php echo base_url();?>projects/form">Nouveau projet</a>
-		
+		<br/>			
 		<br/>
 		<h3>Tâches</h3>
 		<table class="menu">

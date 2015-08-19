@@ -10,8 +10,6 @@ class Project_model extends CI_Model
 
     public function get_status()
     {
-    	$this->load->database();
-    	 
     	$query = $this->db->get('gestion.project_status');
     
     	$data=$query->result();
