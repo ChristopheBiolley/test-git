@@ -45,7 +45,10 @@
 							<th>Auteur</th>			
 							<th>Status</th>
 						</tr>		
-						<?php foreach ($task as $row):?>
+						<?php 
+						$type=$this->uri->segment(1);
+						$from=$this->uri->segment(3);
+						foreach ($task as $row):?>
 						<tr>
 							<td><a href="<?php echo base_url(); ?>tasks/detail/<?php echo $row->task_id?>"><?php echo $row->title;?></a></td>
 							<td><?php echo $row->description;?></td>
@@ -54,7 +57,7 @@
 							<td><?php echo $row->status_id;?></td>	
 							<td>
 							<?php $onclick = array('class="btn"onclick'=>"return confirm('Are you sure?')");?>
-							<?=anchor(base_url()."tasks/delete/".$row->task_id, 'Delete', $onclick);?>
+							<?=anchor(base_url()."tasks/delete/".$row->task_id."/".$type."/".$from, 'Delete', $onclick);?>
 							<?php $onclick = array('onclick'=>"return confirm('Are you sure?')");?>
 							</td>					
 						</tr>				
@@ -73,11 +76,16 @@
 						<th>Auteur</th>
 						<th>Date de création</th>
 					</tr>		
-					<?php foreach ($comment as $row):?>
+					<?php 			
+					foreach ($comment as $row):?>
 					<tr>
 						<td><?php echo $row->text;?></td>
 						<td><?php echo $row->author;?></td>
 						<td><?php echo $row->date;?></td>
+						<td>
+							<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
+							<?=anchor(base_url()."comments/delete/".$row->comment_id."/".$type."/".$from, 'Delete', $onclick);?>				
+						</td>
 					</tr>	
 					<?php endforeach;?>		
 				</table>  

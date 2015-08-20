@@ -50,16 +50,20 @@
 						<th>Commentaire</th>
 						<th>Auteur</th>
 						<th>Date de création</th>
+						
 					</tr>		
-					<?php foreach ($comment as $row):?>
+					<?php 			
+					$type=$this->uri->segment(1);	
+					$from=$this->uri->segment(3);
+					foreach ($comment as $row):?>
 					<tr>
 						<td><?php echo $row->text;?></td>
 						<td><?php echo $row->author;?></td>
 						<td><?php echo $row->date;?></td>
 						<td>
 							<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
-							<?=anchor(base_url()."comments/delete/".$row->comment_id, 'Delete', $onclick);?>				
-						</td>	
+							<?=anchor(base_url()."comments/delete/".$row->comment_id."/".$type."/".$from, 'Delete', $onclick);?>				
+						</td>
 					</tr>	
 					<?php endforeach;?>		
 				</table>  

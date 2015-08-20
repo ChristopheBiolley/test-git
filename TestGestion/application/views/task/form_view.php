@@ -11,8 +11,9 @@
 $title="";
 $descr="";
 $id=0;
-$url=base_url()."tasks/add";
 $project_id=$this->uri->segment(3);
+$url=base_url()."tasks/add/".$project_id;
+
 
 if(isset($task))
 {

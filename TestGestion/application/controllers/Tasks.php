@@ -46,7 +46,7 @@ class Tasks extends CI_Controller
     }
     
     
-public function add() 
+public function add($id) 
     {    	
     	$this->form_validation->set_rules('title', 'Titre', 'required');
     	$this->form_validation->set_rules('descr', 'description', 'required');
@@ -61,7 +61,7 @@ public function add()
     	{
     		$this->Task_model->set_task();
         
-     		redirect(base_url());
+     		redirect(base_url()."projects/detail/".$id);
     	}    	
     }
 
@@ -84,12 +84,12 @@ public function add()
     	}   
     }
 
-    public function delete($id) 
+    public function delete($id,$type,$from) 
     {
     	
     	$this->Task_model->del_task($id);
     	
-     	redirect(base_url());
+     	redirect(base_url().$type."/detail/".$from);
     }
 /*
     public function AddManager() 

@@ -52,11 +52,13 @@ class Comments extends CI_Controller
         
     }
     
-    public function delete($id) 
+    public function delete($id,$type,$from) 
     {    	 
+    	
+    	
     	$this->Comment_model->del_comment($id);
     	
-     	redirect(base_url());
+     	redirect(base_url().$type."/detail/".$from);
     }
 
     public function Lists() 
