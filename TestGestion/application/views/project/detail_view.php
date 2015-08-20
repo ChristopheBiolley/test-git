@@ -5,7 +5,7 @@
 				<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/gestion.css">		
 	</head>
 	<body>
-	<table>
+	<table class="all">
 		<tr>
 			<td>
 				<h3>Projet</h3>
@@ -35,7 +35,6 @@
 					<?php endforeach;?>					
 				</table>
 				<br>
-				<div class="task">
 					<h3>Tâches du projet</h3>
 					<table class="detail">
 						<tr>
@@ -65,9 +64,8 @@
 					</table>
 					<br/>
 					<a class="btn" href="<?php echo base_url();?>tasks/form/<?php echo $this->uri->segment(3);?>">Nouvelle tâche</a>
-				</div>
 			</td>			
-			<td>			
+			<td class="comment">
 				<a class="btn" href="<?php echo base_url();?>comments/form/<?php echo $this->uri->segment(3);?>/project">Nouveau commentaire</a>				
 				<h3>Commentaires</h3>	
 				<table class="detail">
@@ -88,7 +86,7 @@
 						</td>
 					</tr>	
 					<?php endforeach;?>		
-				</table>  
+				</table> 
 			</td>
 		</tr>	
 	</table>	
