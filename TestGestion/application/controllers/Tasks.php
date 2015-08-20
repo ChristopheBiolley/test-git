@@ -12,8 +12,9 @@ class Tasks extends CI_Controller
     	$this->load->model('Task_model');
     	$this->load->model('User_model');
     	$this->load->model('Client_model');
+    	$this->load->model('Comment_model');
     	$this->load->helper('url');
-    	$this->load->library('form_validation');
+    	$this->load->library('form_validation');    	
     }
     
     private $modelTask;
@@ -112,7 +113,7 @@ public function add()
  	 
     	$data['task'] = $this->Task_model->get_tasks($id,$type);
     	 
-    //	$data['comment']= $this->Comment_model->get_comments($id,$type);
+    	$data['comment']= $this->Comment_model->get_comments($id,$type);
     	 
     	$data['user'] = $this->User_model->get_users();
     	

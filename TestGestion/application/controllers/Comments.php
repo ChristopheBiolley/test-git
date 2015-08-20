@@ -1,43 +1,50 @@
 ﻿<?php
-
-
-/**
- * 
- */
 class Comments extends CI_Controller
 {
     public function __construct() 
     {
     	parent::__construct();
+    	$this->load->helper('url');    	
+    	$this->load->model('Comment_model');
     }
 
     private $modelComment;
-
-    public function News()
-    {
-    	$this->load->helper('url');
-    	
-    	$this->load->model('Comment_model');
-
-    	$descr=$_POST['descr'];
-    	$author=$_POST['author'];
-    	$date=$_POST['date'];
-    	$type=$_POST['type'];
-    	$id=$_POST['id'];
-    	
-    	if($type=="Project")
+    
+    public function form($id=0,$type="")
+    {    
+    	if($id==0)
     	{
-
-    		$this->Comment_model->set_project_comment($descr,$author,$date,$id);
+    		 
+    	}
+    	else
+    	{    		
+    		$data['comment'] = $this->Comment_model->get_comments($id,$type);
+    	}
+    
+    
+    	// Render the requested view
+    	$this->load->view('templates/header');
+    	$this->load->view('comment/form_view',$data);
+    	$this->load->view('templates/footer');
+    }
+    
+    public function News()
+    {    	    	
+    	$type=$_POST['type'];
+    	$from=$_POST['from'];
+    	
+    	if($type=="project")
+    	{
+    		$this->Comment_model->set_project_comment();
     	}
     	else
     	{
 
-    		$this->Comment_model->set_task_comment($descr,$author,$date,$id);
+    		$this->Comment_model->set_task_comment();
+    		
     	}
     	
-    	redirect(base_url($type."/Detail/".$id));
-
+    	redirect(base_url().$type."s/detail/".$from);
     }
 
     public function Update() 
@@ -45,24 +52,15 @@ class Comments extends CI_Controller
         
     }
     
-    public function Delete() 
-    {
-    	$this->load->helper('url');
-    	$this->load->model('Comment_model');
-    	 
-       	$id=$_POST['id'];
-    	$typeId=$_POST['typeId'];
-    	$type=$_POST['type'];
-    	
+    public function delete($id) 
+    {    	 
     	$this->Comment_model->del_comment($id);
     	
-    	 
-    	redirect(base_url($type."/Detail/".$typeId));
+     	redirect(base_url());
     }
 
     public function Lists() 
     {
-    	$this->load->model('Comment_model');
     	
     	$data['comment'] = $this->Comment_model->get_comments();
     	
