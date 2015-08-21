@@ -109,7 +109,7 @@ class Task_model extends CI_Model
     			'time_allowed'=>$this->input->post('allowed'),
     			'end_date'=>$this->input->post('end'),
     			'validation_date'=>$this->input->post('validation'),    				
-    			'time_estimate'=>$this->input->post('estimate'),
+    			'time_estimate'=>$this->input->post('estimated'),
     			'time_real'=>$this->input->post('real')
     		);
     		$this->db->where('task_id', $id);

@@ -73,7 +73,7 @@ class Projects extends CI_Controller
     	{
     		$this->Project_model->set_project($this->input->post('id'));
         
-    		$this->detail($this->input->post('id'));
+    		redirect(base_url()."projects/detail/".$this->input->post('id'));
     	}   
     }
     

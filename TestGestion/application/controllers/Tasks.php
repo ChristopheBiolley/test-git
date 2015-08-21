@@ -79,17 +79,16 @@ public function add($id)
     	else
     	{
     		$this->Task_model->set_task($this->input->post('id'));
-        
-    		$this->detail($this->input->post('id'));
-    	}   
+    		
+    		redirect(base_url()."tasks/detail/".$this->input->post('id'));
+        }   
     }
 
     public function delete($id,$type,$from) 
-    {
-    	
+    {    	
     	$this->Task_model->del_task($id);
     	
-     	redirect(base_url().$type."/detail/".$from);
+    	redirect(base_url().$type."/detail/".$from);
     }
 /*
     public function AddManager() 
