@@ -1,7 +1,6 @@
 <head>
 	<title>Formulaire</title>
 </head>
-
 <script>
 	function goback()
 	{
@@ -16,7 +15,6 @@ $date="";
 $from=$this->uri->segment(3);
 $type=$this->uri->segment(4);
 $url=base_url()."comments/news";
-
 ?>
 <form method="post" action="<?php echo $url;?>">
 	<input type="hidden" name=id value="<?php echo $id;?>"/>
