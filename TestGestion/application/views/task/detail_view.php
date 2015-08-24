@@ -41,16 +41,14 @@
 					<?php endforeach;?>					
 				</table>
 			</td>			
-			<td>			
-				<a class="btn" href="<?php echo base_url();?>comments/form/<?php echo $this->uri->segment(3);?>/task">Nouveau commentaire</a>
-				
+			<td class="comment">			
+				<a class="btn" href="<?php echo base_url();?>comments/form/<?php echo $this->uri->segment(3);?>/task">Nouveau commentaire</a>				
 				<h3>Commentaires</h3>	
 				<table class="detail">
 					<tr>
 						<th>Commentaire</th>
 						<th>Auteur</th>
-						<th>Date de création</th>
-						
+						<th>Date de création</th>						
 					</tr>		
 					<?php 			
 					$type=$this->uri->segment(1);	

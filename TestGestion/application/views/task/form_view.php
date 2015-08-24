@@ -60,7 +60,6 @@ if($id==0)
 else
 {
 ?>
-
 <form method="post" action="<?php echo $url;?>">
 	<input type="hidden" name=id value="<?php echo $id;?>"/>		
 	<!-- <input type="hidden" name="URL" value="<?php echo current_url();?>"/> -->

@@ -55,9 +55,9 @@
 							<td><?php echo $row->author_user_id;?></td>
 							<td><?php echo $row->status_id;?></td>	
 							<td>
-							<?php $onclick = array('class="btn"onclick'=>"return confirm('Are you sure?')");?>
-							<?=anchor(base_url()."tasks/delete/".$row->task_id."/".$type."/".$from, 'Delete', $onclick);?>
-							<?php $onclick = array('onclick'=>"return confirm('Are you sure?')");?>
+								<?php $onclick = array('class="btn"onclick'=>"return confirm('Are you sure?')");?>
+								<?=anchor(base_url()."tasks/delete/".$row->task_id."/".$type."/".$from, 'Delete', $onclick);?>
+								<?php $onclick = array('onclick'=>"return confirm('Are you sure?')");?>
 							</td>					
 						</tr>				
 						<?php endforeach;?>
@@ -91,6 +91,6 @@
 		</tr>	
 	</table>	
 	<br/>
-			<a class="btn" href="http://localhost/test-git/TestGestion/">Menu</a>
+	<a class="btn" href="http://localhost/test-git/TestGestion/">Menu</a>
 	</body>
 </html>

@@ -1,5 +1,4 @@
 ﻿<?php
-
 class Task_model extends CI_Model
 {
     public function __construct() 
@@ -13,8 +12,7 @@ class Task_model extends CI_Model
     	if($id==0)
     	{
     		$query = $this->db->get('gestion.task');
-    		$data=$query->result();
-    	
+    		$data=$query->result();    	
     		foreach ($data as $row)
     		{
     			//avoir le status
@@ -22,8 +20,7 @@ class Task_model extends CI_Model
     			$query = $this->db->get_where('gestion.task_status',array('status_id'=>$statusId));
     			$status=$query->row();
     			$row->status_id=$status->status;
-    			//////////////////////////////////
-    			 
+    			//////////////////////////////////    			 
     			//avoir auteur
     			$userId=$row->author_user_id;
     			$query = $this->db->get_where('gestion.user',array('user_id'=>$userId));
@@ -33,13 +30,11 @@ class Task_model extends CI_Model
     		}
     	}
     		else
-    		{
-    			
+    		{    			
     			if($type=="project")
     			{
     				$query = $this->db->get_where('gestion.task',array('project_id' => $id));
-    				$data=$query->result();
-    				
+    				$data=$query->result();    				
     				foreach ($data as $row)
     				{
     					//avoir le status
@@ -47,8 +42,7 @@ class Task_model extends CI_Model
     					$query = $this->db->get_where('gestion.task_status',array('status_id'=>$statusId));
     					$status=$query->row();
     					$row->status_id=$status->status;
-    					//////////////////////////////////
-    				
+    					//////////////////////////////////    				
     					//avoir auteur
     					$userId=$row->author_user_id;
     					$query = $this->db->get_where('gestion.user',array('user_id'=>$userId));
@@ -60,8 +54,7 @@ class Task_model extends CI_Model
     			else 
     			{
 	    			$query = $this->db->get_where('gestion.task',array('task_id' => $id));
-	    			$data=$query->result();
-	    		
+	    			$data=$query->result();	    		
 	    			foreach ($data as $row)
 	    			{
 	    				//avoir le status
@@ -69,8 +62,7 @@ class Task_model extends CI_Model
 	    				$query = $this->db->get_where('gestion.task_status',array('status_id'=>$statusId));
 	    				$status=$query->row();
 	    				$row->status_id=$status->status;
-	    				//////////////////////////////////
-	    		
+	    				//////////////////////////////////	    		
 	    				//avoir auteur
 	    				$userId=$row->author_user_id;
 	    				$query = $this->db->get_where('gestion.user',array('user_id'=>$userId));
@@ -87,8 +79,7 @@ class Task_model extends CI_Model
     {    	
     	if($id==0)
     	{
-    		$data = array(
-    				
+    		$data = array(    				
     				'title'=>$this->input->post('title'),
     				'description'=>$this->input->post('descr'),
     				'create_date'=>$this->input->post('create'),
@@ -120,8 +111,7 @@ class Task_model extends CI_Model
     public function del_task($id) 
     {    	
 	   	if($id==0)
-	    {
-	    		
+	    {	    		
 	    }
 	    else 
 	    {

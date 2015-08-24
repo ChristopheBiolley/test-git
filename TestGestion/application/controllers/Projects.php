@@ -1,5 +1,4 @@
 ﻿<?php
-
 class Projects extends CI_Controller
 {
 	public function __construct()
@@ -16,23 +15,16 @@ class Projects extends CI_Controller
 	
 	public function form($id=0)
 	{
-
 		if($id==0)
-		{
-			
+		{			
 		}
 		else
 		{
 			$data['project'] = $this->Project_model->get_projects($id);  
-		}
-		 
-		
-		$data['user'] = $this->User_model->get_users();
-		 
-		$data['client'] = $this->Client_model->get_clients();
-		
-		$data['status'] = $this->Project_model->get_status();
-		
+		}	 		
+		$data['user'] = $this->User_model->get_users();		 
+		$data['client'] = $this->Client_model->get_clients();		
+		$data['status'] = $this->Project_model->get_status();		
 		// Render the requested view
 		$this->load->view('templates/header');
 		$this->load->view('project/form_view',$data);
@@ -45,15 +37,12 @@ class Projects extends CI_Controller
     	$this->form_validation->set_rules('descr', 'description', 'required');
     	
     	if ($this->form_validation->run() === FALSE)
-    	{    		
-    		   	 
-    		redirect(base_url("projects/form/".$this->input->post('id')));
-    		
+    	{    		    		   	 
+    		redirect(base_url("projects/form/".$this->input->post('id')));    		
     	}
     	else
     	{
-    		$this->Project_model->set_project();
-        
+    		$this->Project_model->set_project();        
      		redirect(base_url());
     	}    	
     }
@@ -61,28 +50,21 @@ class Projects extends CI_Controller
     public function update() 
     {
         $this->form_validation->set_rules('title', 'Titre', 'required');
-    	$this->form_validation->set_rules('descr', 'description', 'required');
-    	
+    	$this->form_validation->set_rules('descr', 'description', 'required');    	
     	if ($this->form_validation->run() === FALSE)
-    	{    		
-    		   	 
-    		redirect(base_url("projects/form/".$this->input->post('id')));
-    		
+    	{    		    		   	 
+    		redirect(base_url("projects/form/".$this->input->post('id')));    		
     	}
     	else
     	{
-    		$this->Project_model->set_project($this->input->post('id'));
-        
+    		$this->Project_model->set_project($this->input->post('id'));        
     		redirect(base_url()."projects/detail/".$this->input->post('id'));
     	}   
     }
     
     public function delete($id) 
     {
-    //id=$_POST['id'];
-    	
-    	$this->Project_model->del_project($id);
-    	
+    	$this->Project_model->del_project($id);    	
      	redirect(base_url());
     }
    /*
@@ -110,31 +92,23 @@ class Projects extends CI_Controller
     }*/
     
     public function view() 
-    {
-    	
+    {    	
     	$data['project'] = $this->Project_model->get_projects();
     	$data['task'] = $this->Task_model->get_tasks();
     	
-    	 $this->load->view('templates/header');
+    	$this->load->view('templates/header');
     	$this->load->view('project/list_view', $data);
-    	 $this->load->view('templates/footer');
+    	$this->load->view('templates/footer');
     }
     
     public function detail($project_id) 
-    {
-    	
-    	$type="project";
-    	
-    	$data['project'] = $this->Project_model->get_projects($project_id);    	
-    	
-    	$data['task'] = $this->Task_model->get_tasks($project_id,$type);
-    	
-    	$data['user'] = $this->User_model->get_users();
-    	
-    	$data['client'] = $this->Client_model->get_clients();
-    	
-    	$data['comment']= $this->Comment_model->get_comments($project_id,$type); 
-    	 	
+    {    	
+    	$type="project";    	
+    	$data['project'] = $this->Project_model->get_projects($project_id);      	
+    	$data['task'] = $this->Task_model->get_tasks($project_id,$type);    	
+    	$data['user'] = $this->User_model->get_users();    	
+    	$data['client'] = $this->Client_model->get_clients();    	
+    	$data['comment']= $this->Comment_model->get_comments($project_id,$type);     	 	
     	$this->load->view('templates/header');
     	$this->load->view('project/detail_view', $data);  
     	$this->load->view('templates/footer');
