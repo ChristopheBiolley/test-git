@@ -61,11 +61,14 @@
 			</tr>
 			<?php endforeach;?>
 		</table>	
+		<?php if($this->session->userdata('access')=="0"){?>
 		<form method="post" action="<?php echo base_url(); ?>admins/log/">
 			User:<input type="text" name="user"/>
 			Password:<input type="password" name="pwd"/>
 			<input type="submit" value="log"/>
-		</form>		
+		</form>	
+		<?php }else{?>	
 		<a class="btn" href="<?php echo base_url(); ?>admins/unlog/">unlog</a>
+		<?php }?>
 	</body>
 </html>
