@@ -30,44 +30,49 @@
 						<td><?php echo $row->end_date;?></td>
 						<td><?php echo $row->client_id;?></td>
 						<td><?php echo $row->status_id;?></td>
+						<?php if($this->session->userdata('access')=="0"){} else{ ?>
 						<td><a class="btn" href="<?php echo base_url();?>projects/form/<?php echo $row->project_id ?>">edition</a></td>	
+						<?php }?>
 					</tr>	
 					<?php endforeach;?>					
 				</table>
 				<br>
-					<h3>Tâches du projet</h3>
-					<table class="detail">
-						<tr>
-							<th>Titre</th>
-							<th>Description</th>
-							<th>Date de création</th>
-							<th>Auteur</th>			
-							<th>Status</th>
-						</tr>		
-						<?php 
-						$type=$this->uri->segment(1);
-						$from=$this->uri->segment(3);
-						foreach ($task as $row):?>
-						<tr>
-							<td><a href="<?php echo base_url(); ?>tasks/detail/<?php echo $row->task_id?>"><?php echo $row->title;?></a></td>
-							<td><?php echo $row->description;?></td>
-							<td><?php echo $row->create_date;?></td>
-							<td><?php echo $row->author_user_id;?></td>
-							<td><?php echo $row->status_id;?></td>	
-							<td>
-								<?php $onclick = array('class="btn"onclick'=>"return confirm('Are you sure?')");?>
-								<?=anchor(base_url()."tasks/delete/".$row->task_id."/".$type."/".$from, 'Delete', $onclick);?>
-								<?php $onclick = array('onclick'=>"return confirm('Are you sure?')");?>
-							</td>					
-						</tr>				
-						<?php endforeach;?>
-					</table>
-					<br/>
-					<a class="btn" href="<?php echo base_url();?>tasks/form/<?php echo $this->uri->segment(3);?>">Nouvelle tâche</a>
+				<h3>Tâches du projet</h3>
+				<table class="detail">
+					<tr>
+						<th>Titre</th>
+						<th>Description</th>
+						<th>Date de création</th>
+						<th>Auteur</th>			
+						<th>Status</th>
+					</tr>		
+					<?php 
+					$type=$this->uri->segment(1);
+					$from=$this->uri->segment(3);
+					foreach ($task as $row):?>
+					<tr>
+						<td><a href="<?php echo base_url(); ?>tasks/detail/<?php echo $row->task_id?>"><?php echo $row->title;?></a></td>
+						<td><?php echo $row->description;?></td>
+						<td><?php echo $row->create_date;?></td>
+						<td><?php echo $row->author_user_id;?></td>
+						<td><?php echo $row->status_id;?></td>	
+						<?php if($this->session->userdata('access')=="0"){} else{ ?>
+						<td>
+							<?php $onclick = array('class="btn"onclick'=>"return confirm('Are you sure?')");?>
+							<?=anchor(base_url()."tasks/delete/".$row->task_id."/".$type."/".$from, 'Delete', $onclick);?>
+						</td>
+						<?php }?>					
+					</tr>				
+					<?php endforeach;?>
+				</table>
+				<br/>
+				<?php if($this->session->userdata('access')=="0"){} else{ ?>
+				<a class="btn" href="<?php echo base_url();?>tasks/form/<?php echo $this->uri->segment(3);?>">Nouvelle tâche</a>
+				<?php }?>
 			</td>			
 			<td class="comment">
 				<a class="btn" href="<?php echo base_url();?>comments/form/<?php echo $this->uri->segment(3);?>/project">Nouveau commentaire</a>				
-				<h3>Commentaires</h3>	
+				<h3>Commentaires</h3>
 				<table class="detail">
 					<tr>
 						<th>Commentaire</th>
@@ -80,10 +85,12 @@
 						<td><?php echo $row->text;?></td>
 						<td><?php echo $row->author;?></td>
 						<td><?php echo $row->date;?></td>
+						<?php if($this->session->userdata('access')=="0"){} else{ ?>
 						<td>
 							<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
 							<?=anchor(base_url()."comments/delete/".$row->comment_id."/".$type."/".$from, 'Delete', $onclick);?>				
 						</td>
+						<?php }?>
 					</tr>	
 					<?php endforeach;?>		
 				</table> 

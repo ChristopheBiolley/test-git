@@ -5,17 +5,26 @@ class User_model extends CI_Model
     public function __construct() 
     {
     	parent::__construct();
+    	$this->load->database();
     }
     
     public function get_users() 
-    {
-    	$this->load->database();
-    	 
-    	$query = $this->db->get('gestion.user');
-    	
-    	$data=$query->result();
-    	
+    {    	 
+    	$query = $this->db->get('gestion.user');    	
+    	$data=$query->result();    	
     	return $data;
+    }
+    
+    public function check_user($user="",$pwd="")
+    {
+    	$query = $this->db->get_where('gestion.user',array('login' => $user));
+    	$data=$query->row();
+    	
+    	if($data->pw==$pwd)
+    	{
+    		$this->session->set_userdata('access', $data->access_id);    
+    			
+    	}
     }
     
     public function set_user() 

@@ -36,7 +36,9 @@
 						<td><?php echo $row->validation_date;?></td>
 						<td><?php echo $row->time_estimate;?></td>
 						<td><?php echo $row->time_real;?></td>
-						<td><a class="btn" href="<?php echo base_url();?>tasks/form/<?php echo $row->task_id ?>">edition</a></td>	
+						<?php if($this->session->userdata('access')=="0"){} else{ ?>
+						<td><a class="btn" href="<?php echo base_url();?>tasks/form/<?php echo $row->task_id ?>">edition</a></td>
+						<?php }?>	
 					</tr>	
 					<?php endforeach;?>					
 				</table>
@@ -58,10 +60,12 @@
 						<td><?php echo $row->text;?></td>
 						<td><?php echo $row->author;?></td>
 						<td><?php echo $row->date;?></td>
+						<?php if($this->session->userdata('access')=="0"){} else{ ?>
 						<td>
 							<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
 							<?=anchor(base_url()."comments/delete/".$row->comment_id."/".$type."/".$from, 'Delete', $onclick);?>				
 						</td>
+						<?php }?>
 					</tr>	
 					<?php endforeach;?>		
 				</table>  
