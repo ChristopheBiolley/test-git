@@ -20,12 +20,11 @@
 				<td><?php echo $row->description;?></td>
 				<td><?php echo $row->create_date;?></td>
 			<!-- 	<td><?php echo $row->author_user_id;?></td>
-				<td><?php echo $row->status_id;?></td>	 -->
-				
+				<td><?php echo $row->status_id;?></td>	 -->				
 				<?php if($this->session->userdata('access')=="0"){} else{ ?>
 				<td>
-				<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
-				<?=anchor(base_url()."projects/delete/".$row->project_id, 'Delete', $onclick);?>
+					<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
+					<?=anchor(base_url()."projects/delete/".$row->project_id, 'Delete', $onclick);?>
 				</td>	
 				<?php }?>
 			</tr>
@@ -53,10 +52,10 @@
 				<td><?php echo $row->create_date;?></td>
 			<!-- 	<td><?php echo $row->author_user_id;?></td>
 				<td><?php echo $row->status_id;?></td>	 -->
-			<?php if($this->session->userdata('access')=="0"){} else{ ?>	
-				<td >
-				<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
-				<?=anchor(base_url()."tasks/delete/".$row->task_id, 'Delete', $onclick);?>				
+				<?php if($this->session->userdata('access')=="0"){} else{ ?>	
+				<td>
+					<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
+					<?=anchor(base_url()."tasks/delete/".$row->task_id, 'Delete', $onclick);?>				
 				</td>	
 				<?php }?>
 			</tr>
@@ -67,6 +66,6 @@
 			Password:<input type="password" name="pwd"/>
 			<input type="submit" value="log"/>
 		</form>		
-		<a href="<?php echo base_url(); ?>admins/unlog/">unlog</a>
+		<a class="btn" href="<?php echo base_url(); ?>admins/unlog/">unlog</a>
 	</body>
 </html>
