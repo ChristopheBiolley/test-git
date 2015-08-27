@@ -79,10 +79,12 @@
 					<table class="menu">
 						<tr>							
 							<th>Nom</th>
+							<th>Niveau d'access</th>
 						</tr>
 						<?php foreach ($user as $row):?>
 						<tr>		
 							<td><a href="<?php echo base_url(); ?>admins/detailuser/<?php echo $row->user_id?>"><?php echo $row->prename." ".$row->name;?></a></td>
+							<td><?php echo $row->access_id;?></td>
 							<?php if($this->session->userdata('access')=="10"){ ?>
 							<td>
 								<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>

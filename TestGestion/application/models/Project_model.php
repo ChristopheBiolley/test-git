@@ -1,5 +1,4 @@
 ﻿<?php
-
 class Project_model extends CI_Model
 {
     public function __construct() 
@@ -10,8 +9,7 @@ class Project_model extends CI_Model
 
     public function get_status()
     {
-    	$query = $this->db->get('gestion.project_status');
-    
+    	$query = $this->db->get('gestion.project_status');    
     	$data=$query->result();
     
     	return $data;
@@ -67,7 +65,6 @@ class Project_model extends CI_Model
 	    			'client_id'=>$this->input->post('client'),
 	    			'status_id'=>$this->input->post('status'),
 	    			'author_user_id'=>$this->input->post('author')
-
 	    	);
 	    	$this->db->insert('gestion.project', $data);
     	}
@@ -90,8 +87,7 @@ class Project_model extends CI_Model
     public function del_project($id)
     {    	
     	if($id==0)
-    	{
-    		
+    	{    		
     	}
     	else 
     	{

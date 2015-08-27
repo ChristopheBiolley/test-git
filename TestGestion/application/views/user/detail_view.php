@@ -1,4 +1,4 @@
-<?php $this->load->helper('url');?>
+﻿<?php $this->load->helper('url');?>
 <html>
 	<head>
 		<title>Utilisateur</title>
@@ -36,7 +36,7 @@
 					<tr>
 						<th>Commentaire</th>
 						<th>Auteur</th>
-						<th>Date de cr�ation</th>						
+						<th>Date de création</th>						
 					</tr>		
 					<?php 			
 					$type=$this->uri->segment(1);	

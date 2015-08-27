@@ -1,7 +1,7 @@
-<?php $this->load->helper('url');?>
+ï»¿<?php $this->load->helper('url');?>
 <html>
 	<head>
-		<title>Tâche</title>
+		<title>Client</title>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/gestion.css">
 	</head>
 	<body>
@@ -17,8 +17,8 @@
 						<th>Adresse 2</th>
 						<th>Code postal</th>
 						<th>Ville</th>
-						<th>Téléphone fixe</th>
-						<th>Téléphone mobile</th>
+						<th>TÃ©lÃ©phone fixe</th>
+						<th>TÃ©lÃ©phone mobile</th>
 						<th>Mail</th>		
 						<th>Url</th>			
 					</tr>
@@ -48,7 +48,7 @@
 					<tr>
 						<th>Commentaire</th>
 						<th>Auteur</th>
-						<th>Date de création</th>						
+						<th>Date de crÃ©ation</th>						
 					</tr>		
 					<?php 			
 					$type=$this->uri->segment(1);	

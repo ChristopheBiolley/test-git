@@ -1,4 +1,4 @@
-<head>
+﻿<head>
 	<title>Formulaire</title>
 </head>
 
@@ -32,7 +32,7 @@ if(isset($user))
 ?>
 <form method="post" action="<?php echo $url;?>">
 	<input type="hidden" name="id" value="<?php echo $id;?>"/>
-	Pr�nom<input type="text" name="prename" value="<?php echo $prename;?>">
+	Prénom<input type="text" name="prename" value="<?php echo $prename;?>">
 	Nom:<input type="text" name="name" value="<?php echo $name;?>">
 	<?php if($id==0){?>
 	Login:<input type="text" name="login" value="<?php echo $login;?>">

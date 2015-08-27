@@ -13,7 +13,7 @@ class Admins extends CI_Controller
     private $modelClient;
     private $modelUser;
         
-    ////////////Loging
+    ////////////Login
     public function log()
     {
     	$this->form_validation->set_rules('user', 'User', 'required');

@@ -1,4 +1,4 @@
-<head>
+ï»¿<head>
 	<title>Formulaire</title>
 </head>
 
@@ -45,14 +45,14 @@ if(isset($client))
 <form method="post" action="<?php echo $url;?>">
 	<input type="hidden" name="id" value="<?php echo $id;?>"/>
 	Company:<input type="text" name="company" value="<?php echo $company;?>"/>
-	Prénom<input type="text" name="name" value="<?php echo $name;?>"/>
+	PrÃ©nom<input type="text" name="name" value="<?php echo $name;?>"/>
 	Nom:<input type="text" name="surname" value="<?php echo $surname;?>"/>
 	Adresse 1:<input type="text" name="address1" value="<?php echo $address1;?>"/>
 	Adresse 2:<input type="text" name="address2" value="<?php echo $address2;?>"/>
 	Code postal:<input type="text" name="postal" value="<?php echo $postal;?>"/>
-	Localité:<input type="text" name="locality" value="<?php echo $locality;?>"/>
-	Tél. fixe:<input type="tel" name="fixe" value="<?php echo $fixe;?>"/>
-	Tél. mobile:<input type="tel" name="mobile" value="<?php echo $mobile;?>"/>
+	LocalitÃ©:<input type="text" name="locality" value="<?php echo $locality;?>"/>
+	TÃ©l. fixe:<input type="tel" name="fixe" value="<?php echo $fixe;?>"/>
+	TÃ©l. mobile:<input type="tel" name="mobile" value="<?php echo $mobile;?>"/>
 	Mail:<input type="email" name="mail" value="<?php echo $mail;?>"/>
 	Site:<input type="url" name="site" value="<?php echo $site;?>"/>	
 	<br/>						
