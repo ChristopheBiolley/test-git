@@ -73,6 +73,30 @@
 					<?php }else{?>	
 					<a class="btn" href="<?php echo base_url(); ?>admins/unlog/">unlog</a>
 					<?php }?>	
+				</td>				
+				<td>
+					<h3>Utilisateur</h3>
+					<table class="menu">
+						<tr>							
+							<th>Nom</th>
+						</tr>
+						<?php foreach ($user as $row):?>
+						<tr>		
+							<td><a href="<?php echo base_url(); ?>admins/detailuser/<?php echo $row->user_id?>"><?php echo $row->prename." ".$row->name;?></a></td>
+							<?php if($this->session->userdata('access')=="10"){ ?>
+							<td>
+								<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
+								<?=anchor(base_url()."admins/deluser/".$row->user_id, 'Delete', $onclick);?>
+							</td>	
+							<?php }?>
+						</tr>
+						<?php endforeach;?>
+					</table>	
+					<br/>		
+					<?php if($this->session->userdata('access')=="10"){ ?>
+					<a class="btn" href="<?php echo base_url();?>admins/userform">Nouvel utilisateur</a>
+					<?php }?>
+					<br/>		
 				</td>
 				<td>
 					<h3>Clients</h3>
@@ -96,9 +120,8 @@
 					</table>	
 					<br/>		
 					<?php if($this->session->userdata('access')=="10"){ ?>
-					<a class="btn" href="<?php echo base_url();?>admins/clientform">Nouveau projet</a>
+					<a class="btn" href="<?php echo base_url();?>admins/clientform">Nouveau client</a>
 					<?php }?>
-					<br/>		
 				</td>
 			</tr>	
 		</table>	

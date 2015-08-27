@@ -96,6 +96,7 @@ class Projects extends CI_Controller
     	$data['project'] = $this->Project_model->get_projects();
     	$data['task'] = $this->Task_model->get_tasks();
     	$data['client'] = $this->Client_model->get_clients();
+    	$data['user'] = $this->User_model->get_users();
     	
     	$this->load->view('templates/header');
     	$this->load->view('project/list_view', $data);
