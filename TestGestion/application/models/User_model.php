@@ -17,6 +17,8 @@ class User_model extends CI_Model
     
     public function check_user($user="",$pwd="")
     {
+    	$pwd=sha1($pwd);
+    	$pwd=crypt($pwd,'$6$');
     	$query = $this->db->get_where('gestion.user',array('login' => $user));
     	$data=$query->row();
     	

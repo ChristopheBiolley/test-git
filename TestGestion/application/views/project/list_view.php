@@ -69,6 +69,6 @@
 		</form>	
 		<?php }else{?>	
 		<a class="btn" href="<?php echo base_url(); ?>admins/unlog/">unlog</a>
-		<?php }?>
+		<?php }?>			
 	</body>
 </html>
