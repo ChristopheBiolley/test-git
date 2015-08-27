@@ -1,5 +1,4 @@
 ﻿<?php
-
 class User_model extends CI_Model
 {
     public function __construct() 
@@ -24,8 +23,12 @@ class User_model extends CI_Model
     	
     	if($data->pw==$pwd)
     	{
-    		$this->session->set_userdata('access', $data->access_id);    
-    			
+    		$query2 = $this->db->get_where('gestion.access_level',array('access_id' => $data->access_id));
+    		$data2=$query2->row();
+    		
+    		$access=$data2->value;
+    		
+    		$this->session->set_userdata('access', $access);        			
     	}
     }
     
@@ -38,5 +41,4 @@ class User_model extends CI_Model
     {
         
     }
-
 }

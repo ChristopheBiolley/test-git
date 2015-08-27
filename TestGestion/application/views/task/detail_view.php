@@ -36,7 +36,7 @@
 						<td><?php echo $row->validation_date;?></td>
 						<td><?php echo $row->time_estimate;?></td>
 						<td><?php echo $row->time_real;?></td>
-						<?php if($this->session->userdata('access')=="0"){} else{ ?>
+						<?php if($this->session->userdata('access')=="5"||$this->session->userdata('access')=="10"){ ?>
 						<td><a class="btn" href="<?php echo base_url();?>tasks/form/<?php echo $row->task_id ?>">edition</a></td>
 						<?php }?>	
 					</tr>	
@@ -60,7 +60,7 @@
 						<td><?php echo $row->text;?></td>
 						<td><?php echo $row->author;?></td>
 						<td><?php echo $row->date;?></td>
-						<?php if($this->session->userdata('access')=="0"){} else{ ?>
+						<?php if($this->session->userdata('access')=="5"||$this->session->userdata('access')=="10"){ ?>
 						<td>
 							<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
 							<?=anchor(base_url()."comments/delete/".$row->comment_id."/".$type."/".$from, 'Delete', $onclick);?>				
@@ -72,7 +72,7 @@
 			</td>
 		</tr>	
 	</table>	
-		<br>
+		<br/>
 		<?php foreach ($task as $row):?>
 		<a class="btn" href="<?php echo base_url();?>projects/detail/<?php echo $row->project_id ?>">Retour au projet</a>
 		<?php endforeach;?>		

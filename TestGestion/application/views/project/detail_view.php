@@ -30,7 +30,7 @@
 						<td><?php echo $row->end_date;?></td>
 						<td><?php echo $row->client_id;?></td>
 						<td><?php echo $row->status_id;?></td>
-						<?php if($this->session->userdata('access')=="0"){} else{ ?>
+						<?php if($this->session->userdata('access')=="5"||$this->session->userdata('access')=="10"){ ?>
 						<td><a class="btn" href="<?php echo base_url();?>projects/form/<?php echo $row->project_id ?>">edition</a></td>	
 						<?php }?>
 					</tr>	
@@ -56,7 +56,7 @@
 						<td><?php echo $row->create_date;?></td>
 						<td><?php echo $row->author_user_id;?></td>
 						<td><?php echo $row->status_id;?></td>	
-						<?php if($this->session->userdata('access')=="0"){} else{ ?>
+						<?php if($this->session->userdata('access')=="5"||$this->session->userdata('access')=="10"){ ?>
 						<td>
 							<?php $onclick = array('class="btn"onclick'=>"return confirm('Are you sure?')");?>
 							<?=anchor(base_url()."tasks/delete/".$row->task_id."/".$type."/".$from, 'Delete', $onclick);?>
@@ -66,7 +66,7 @@
 					<?php endforeach;?>
 				</table>
 				<br/>
-				<?php if($this->session->userdata('access')=="0"){} else{ ?>
+				<?php if($this->session->userdata('access')=="5"||$this->session->userdata('access')=="10"){ ?>
 				<a class="btn" href="<?php echo base_url();?>tasks/form/<?php echo $this->uri->segment(3);?>">Nouvelle tâche</a>
 				<?php }?>
 			</td>			
@@ -85,7 +85,7 @@
 						<td><?php echo $row->text;?></td>
 						<td><?php echo $row->author;?></td>
 						<td><?php echo $row->date;?></td>
-						<?php if($this->session->userdata('access')=="0"){} else{ ?>
+						<?php if($this->session->userdata('access')=="5"||$this->session->userdata('access')=="10"){?>
 						<td>
 							<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
 							<?=anchor(base_url()."comments/delete/".$row->comment_id."/".$type."/".$from, 'Delete', $onclick);?>				
