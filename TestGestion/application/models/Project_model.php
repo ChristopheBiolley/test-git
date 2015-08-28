@@ -108,7 +108,7 @@ class Project_model extends CI_Model
 	    	$userId=$row->user_id;
 	    	$query = $this->db->get_where('gestion.user',array('user_id'=>$userId));
 	    	$user=$query->row();
-	    	$row->user_id=$user->prename." ".$author->name;
+	    	$row->user_id=$user->prename." ".$user->name;
 	    	//////////////////	
     	}    	
     	return $data;
