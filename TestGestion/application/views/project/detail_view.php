@@ -36,6 +36,19 @@
 					</tr>	
 					<?php endforeach;?>					
 				</table>
+				<br/>				
+				<table>
+					<tr>						
+						<th>Attribué à</th>
+					</tr>
+					<tr>					
+						<td>
+							<?php foreach ($manager as $row):?>
+							<?php echo $row->user_id;?>
+							<?php endforeach;?>	
+						</td>						
+					</tr>
+				</table>				
 				<br>
 				<h3>Tâches du projet</h3>
 				<table class="detail">

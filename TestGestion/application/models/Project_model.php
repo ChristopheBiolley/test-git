@@ -94,7 +94,27 @@ class Project_model extends CI_Model
     		$this->db->delete('gestion.project', array('project_id' => $id));
     	}    	   	
     }
-   /*
+   
+    
+    public function get_manager($project_id) 
+    {   	   	
+    	
+    	$query = $this->db->get_where('gestion.project_manager',array('project_id' => $project_id));
+    	$data=$query->result(); 
+    	  
+    	foreach ($data as $row)
+    	{
+	    	//avoir auteur
+	    	$userId=$row->user_id;
+	    	$query = $this->db->get_where('gestion.user',array('user_id'=>$userId));
+	    	$user=$query->row();
+	    	$row->user_id=$user->prename." ".$author->name;
+	    	//////////////////	
+    	}    	
+    	return $data;
+    }
+    
+    /*
     public function add_manager($user_id,$project_id) 
     {
     	

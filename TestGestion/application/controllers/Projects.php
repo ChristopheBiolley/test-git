@@ -110,7 +110,8 @@ class Projects extends CI_Controller
     	$data['task'] = $this->Task_model->get_tasks($project_id,$type);    	
     	$data['user'] = $this->User_model->get_users();    	
     	$data['client'] = $this->Client_model->get_clients();    	
-    	$data['comment']= $this->Comment_model->get_comments($project_id,$type);     	 	
+    	$data['comment']= $this->Comment_model->get_comments($project_id,$type);     	
+    	$data['manager']= $this->Project_model->get_manager($project_id); 
     	$this->load->view('templates/header');
     	$this->load->view('project/detail_view', $data);  
     	$this->load->view('templates/footer');
