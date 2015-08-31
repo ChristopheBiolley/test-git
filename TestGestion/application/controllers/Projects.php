@@ -93,7 +93,7 @@ class Projects extends CI_Controller
     
     
     public function view() 
-    {    	
+    {        	
     	$data['project'] = $this->Project_model->get_projects();
     	$data['task'] = $this->Task_model->get_tasks();
     	$data['client'] = $this->Client_model->get_clients();

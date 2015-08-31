@@ -34,8 +34,9 @@ class Comment_model extends CI_Model
     }
 
     public function set_project_comment() 
-    {
-		$data = array(    		    			 
+    {    	
+	
+    	$data = array(    		    			 
     		'text'=>$this->input->post('text'),
     		'date'=>$this->input->post('date'),
     		'project_id'=>$this->input->post('from'),

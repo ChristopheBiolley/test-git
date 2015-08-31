@@ -31,7 +31,8 @@ class Admins extends CI_Controller
     
     public function unlog()
     {
-    		$this->session->set_userdata('access', '0');     
+    		$this->session->set_userdata('access', '0');  
+    		$this->session->unset_userdata('user');
     		redirect(base_url());   	
     }
     ////////////////////

@@ -53,7 +53,8 @@ class User_model extends CI_Model
     		
     		$access=$data2->value;
     		
-    		$this->session->set_userdata('access', $access);        			
+    		$this->session->set_userdata('access', $access);    
+    		$this->session->set_userdata('user', $user);
     	}
     }
     

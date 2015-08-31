@@ -7,9 +7,18 @@
 		history.go(-1);
 	}
 </script>
-<?php 
+<?php    
 $text="";
-$author="";
+
+if($this->session->userdata('user')==NULL)	
+{
+	$author="guest";
+}
+else
+{
+	$author=$this->session->userdata('user');
+}
+
 $id=0;
 $date="";
 $from=$this->uri->segment(3);
@@ -20,8 +29,8 @@ $url=base_url()."comments/news";
 	<input type="hidden" name=id value="<?php echo $id;?>"/>
 	<input type="hidden" name=type value="<?php echo $type;?>"/>
 	<input type="hidden" name=from value="<?php echo $from;?>"/>
-	<input type="hidden" name="date" value="<?php echo date ('Y-m-d')?>"/>
-	Auteur : <input type="text" name="author" value="<?php echo $author;?>"/><br/>
+	<input type="hidden" name="date" value="<?php echo date ('Y-m-d');?>"/>
+	<input type="hidden" name="author" value="<?php echo $author;?>"/>	
 	Texte : <br/>
 	<textarea name="text"><?php echo $text;?></textarea>	
 	<br/>						
