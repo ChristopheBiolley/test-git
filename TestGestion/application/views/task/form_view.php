@@ -48,7 +48,6 @@ if($id==0)
 	<textarea name="descr"><?php echo $descr;?></textarea><br/>
 	Auteur:	
 	<select name="author">
-		<option selected>choisir un auteur</option>
 		<?php foreach ($user as $row): ?>
 		<option  value="<?php echo $row->user_id;?>"><?php echo $row->prename." ".$row->name;?></option>
 		<?php endforeach;?>

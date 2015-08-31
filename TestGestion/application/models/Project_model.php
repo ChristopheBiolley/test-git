@@ -101,34 +101,47 @@ class Project_model extends CI_Model
     	
     	$query = $this->db->get_where('gestion.project_manager',array('project_id' => $project_id));
     	$data=$query->result(); 
-    	  
-    	foreach ($data as $row)
-    	{
-	    	//avoir auteur
-	    	$userId=$row->user_id;
-	    	$query = $this->db->get_where('gestion.user',array('user_id'=>$userId));
-	    	$user=$query->row();
-	    	$row->user_id=$user->prename." ".$user->name;
-	    	//////////////////	
-    	}    	
+    	
+	    	foreach ($data as $row)
+	    	{
+		    	//avoir auteur
+		    	$userId=$row->user_id;
+		    	$query = $this->db->get_where('gestion.user',array('user_id'=>$userId));
+		    	$user=$query->row();
+		    	$row->user_id=$user->prename." ".$user->name;
+		    	//////////////////	
+	    	}    	
+    	
     	return $data;
     }
     
-    /*
-    public function add_manager($user_id,$project_id) 
+    public function set_manager($id=0)
     {
-    	
-    	
-    	$data=array(
-    		'user_id'=>$user_id,
-    		'project_id'=>$project_id
-    	);
-    	$this->db->insert('gestion.project_manager', $data);
+    	if($id==0)
+    	{
+    		$data = array(
+    				'project_id'=>$this->input->post('project'),
+    				'user_id'=>$this->input->post('user')
+    		);
+    		$this->db->insert('gestion.project_manager', $data);
+    	}
+    	else
+    	{
+    		$data = array(
+    				'user_id'=>$this->input->post('user')
+    		);
+    		$this->db->where('project_manager_id', $id);
+    		$this->db->update('gestion.project_manager', $data);
+    	}
     }
-
-    public function del_manager($user_id,$project_id) 
+ public function del_manager($id) 
     {
-    	
-    	$this->db->delete('gestion.project_manager', array('project_id' => $project_id,'user_id'=>$user_id));
-    }*/
+    	if($id==0)
+    	{
+    	}
+    	else
+    	{
+    		$this->db->delete('gestion.project_manager', array('project_manager_id' => $id));
+    	}
+    }
 }

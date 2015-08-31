@@ -68,25 +68,34 @@ public function add($id)
     	$this->Task_model->del_task($id);    	
     	redirect(base_url().$type."/detail/".$from);
     }
-/*
-    public function AddManager() 
-    {
-        
+
+    public function AddManager($id) 
+    {    	
+    	$data= $this->Task_model->get_manager($id);
+    	if($data==NULL)
+    	{
+    		$this->Task_model->set_manager();
+    	}
+    	else
+    	{
+    		foreach($data as $row)
+    		{
+    			$this->Task_model->set_manager($row->task_user_id);
+    		}    		
+    	}
+    	redirect(base_url()."tasks/detail/".$this->input->post('task'));
     }
 
-    public function DelManager() 
+    public function DelManager($id,$from) 
     {
-       
+    	$this->Task_model->del_manager($id);
+    	redirect(base_url()."tasks/detail/".$from);
     }
-
-    public function Lists()
-    {
-       
-    }
-*/
+    
     public function Detail($id) 
     {    	 
-    	$type="task"; 	 
+    	$type="task"; 
+    	$data['manager']= $this->Task_model->get_manager($id);
     	$data['task'] = $this->Task_model->get_tasks($id,$type);    	 
     	$data['comment']= $this->Comment_model->get_comments($id,$type);    	 
     	$data['user'] = $this->User_model->get_users();    	

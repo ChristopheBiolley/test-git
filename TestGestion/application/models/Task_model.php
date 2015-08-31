@@ -118,14 +118,53 @@ class Task_model extends CI_Model
 	    	$this->db->delete('gestion.task', array('task_id' => $id));
 	    }    	  
     }
-    /*  
-    public function add_manager() 
+    
+    public function get_manager($id)
+    {   
+	    	$query = $this->db->get_where('gestion.task_manager',array('task_id' => $id));
+	    	$data=$query->result();
+	    	
+	    	foreach ($data as $row)
+	    	{
+	    		//avoir auteur
+	    		$userId=$row->user_id;
+	    		$query = $this->db->get_where('gestion.user',array('user_id'=>$userId));
+	    		$user=$query->row();
+	    		$row->user_id=$user->prename." ".$user->name;
+	    		//////////////////
+	    	}
+    	
+    	return $data;
+    }
+     
+    public function set_manager($id=0) 
     {
-       
+    	if($id==0)
+    	{
+    		$data = array(
+    				'task_id'=>$this->input->post('task'),
+    				'user_id'=>$this->input->post('user')
+    		);
+    		$this->db->insert('gestion.task_manager', $data);
+    	}
+    	else
+    	{
+    		$data = array(
+    			'user_id'=>$this->input->post('user')
+    		);
+    		$this->db->where('task_user_id', $id);
+    		$this->db->update('gestion.task_manager', $data);
+    	}    	
     }
 
-    public function del_manager() 
+    public function del_manager($id) 
     {
-       
-    }*/
+    	if($id==0)
+    	{
+    	}
+    	else
+    	{
+    		$this->db->delete('gestion.task_manager', array('task_user_id' => $id));
+    	}
+    }
 }

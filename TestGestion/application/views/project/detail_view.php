@@ -39,14 +39,42 @@
 				<br/>				
 				<table>
 					<tr>						
-						<th>Attribué à</th>
+						<th>Projet attribué à</th>
 					</tr>
 					<tr>					
 						<td>
-							<?php foreach ($manager as $row):?>
-							<?php echo $row->user_id;?>
-							<?php endforeach;?>	
-						</td>						
+							<?php
+							if($manager==NULL)
+							{
+								echo "Non attribué";
+							}
+							else
+							{ 
+								foreach ($manager as $row):
+								echo $row->user_id;	?>	
+								<p>
+									<?php if($this->session->userdata('access')=="10"){
+									$onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
+									<?=anchor(base_url()."projects/delmanager/".$row->project_manager_id."/".$row->project_id, 'Delete', $onclick);
+									}?>
+								</p> 						
+								<?php endforeach;
+							}?>	
+						</td>
+						<?php if($this->session->userdata('access')=="10"){ ?>
+						<td>
+							<form action="<?php echo base_url()."projects/addmanager/".$this->uri->segment(3);?>" method="post">											
+								<input type="hidden" name="project" value="<?php echo $this->uri->segment(3);?>">
+								choisir un utilisateur:
+								<select name="user">
+									<?php foreach ($user as $row): ?>
+									<option  value="<?php echo $row->user_id;?>"><?php echo $row->prename." ".$row->name;?></option>
+									<?php endforeach;?>
+								</select> <br/>	
+								<input type="submit" value="OK">
+							</form>
+						</td>	
+						<?php }?>					
 					</tr>
 				</table>				
 				<br>

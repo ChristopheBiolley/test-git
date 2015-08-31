@@ -67,29 +67,30 @@ class Projects extends CI_Controller
     	$this->Project_model->del_project($id);    	
      	redirect(base_url());
     }
-   /*
-    public function addmanager() 
+    
+    public function AddManager($id)
     {
-
-    	
-    	$user_id=0;
-    	$project_id=0;
-    	
-    	$this->Project_model->add_manager($user_id,$project_id);
-    	
-    	redirect(base_url("Project/Detail/".$project_id));
+    	$data= $this->Project_model->get_manager($id);
+    	if($data==NULL)
+    	{
+    		$this->Project_model->set_manager();
+    	}
+    	else
+    	{
+    		foreach($data as $row)
+    		{
+    			$this->Project_model->set_manager($row->project_manager_id);
+    		}
+    	}
+    	redirect(base_url()."projects/detail/".$this->input->post('project'));
     }
-
-    public function delmanager()
+    
+ 	public function DelManager($id,$from) 
     {
-    	
-    	$user_id=0;
-        $project_id=0;
-        
-    	$this->Project_model->del_manager($user_id,$project_id);
-    	 
-    	redirect(base_url("Project/Detail/".$project_id));
-    }*/
+    	$this->Project_model->del_manager($id);
+    	redirect(base_url()."projects/detail/".$from);
+    }
+    
     
     public function view() 
     {    	
