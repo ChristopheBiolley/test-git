@@ -156,6 +156,15 @@ class Task_model extends CI_Model
     		$this->db->update('gestion.task_manager', $data);
     	}    	
     }
+    
+    public function set_new_manager()
+    {    	
+    		$data = array(
+    				'task_id'=>$this->input->post('task'),
+    				'user_id'=>$this->input->post('user')
+    		);
+    		$this->db->insert('gestion.task_manager', $data);    	
+    }
 
     public function del_manager($id) 
     {

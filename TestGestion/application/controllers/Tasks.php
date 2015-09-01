@@ -33,6 +33,24 @@ class Tasks extends CI_Controller
     	$this->load->view('templates/footer');
     }    
     
+    public function formmanager($id=0)
+    {
+    	if($id==0)
+    	{
+    	}
+    	else
+    	{
+    		$data['task'] = $this->Task_model->get_tasks($id);
+    	}
+    	$data['user'] = $this->User_model->get_users();
+    	$data['client'] = $this->Client_model->get_clients();
+    	$data['status'] = $this->Project_model->get_status();
+    	// Render the requested view
+    	$this->load->view('templates/header');
+    	$this->load->view('task/form_view',$data);
+    	$this->load->view('templates/footer');
+    }
+    
 public function add($id) 
     {    	
     	$this->form_validation->set_rules('title', 'Titre', 'required');
@@ -85,7 +103,15 @@ public function add($id)
     	}
     	redirect(base_url()."tasks/detail/".$this->input->post('task'));
     }
-
+    
+    public function AddNewManager()
+    {
+    	
+    	$this->Task_model->set_new_manager();
+    	
+    	redirect(base_url()."tasks/detail/".$this->input->post('task'));
+    }
+    
     public function DelManager($id,$from) 
     {
     	$this->Task_model->del_manager($id);

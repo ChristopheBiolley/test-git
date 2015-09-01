@@ -37,53 +37,53 @@
 						<td><?php echo $row->time_estimate;?></td>
 						<td><?php echo $row->time_real;?></td>
 						<?php if($this->session->userdata('access')=="5"||$this->session->userdata('access')=="10"){ ?>
-						<td><a class="btn" href="<?php echo base_url();?>tasks/form/<?php echo $row->task_id ?>">edition</a></td>
+						<td><a class="btn" href="<?php echo base_url();?>tasks/form/<?php echo $row->task_id ;?>">edition</a></td>
 						<?php }?>	
 					</tr>	
 					<?php endforeach;?>		
 				</table>	
-				<br/>										
-				<table>
-					<tr>						
-						<th>Tâche attribuée à</th>
-					</tr>
-					<tr>					
-						<td>
-							<?php
-							if($manager==NULL)
-							{
-								echo "Non attribué";
-							}
-							else
-							{ 
-								foreach ($manager as $row):
-								echo $row->user_id;	?>	
-								<p>
-									<?php if($this->session->userdata('access')=="10"){
+				<br/>	
+				Tâche attribuée à :									
+				<table>					
+															
+						<?php
+						if($manager==NULL)
+						{
+							?><tr><td><?php echo "Non attribué";?></td></tr><?php 
+						}
+						else
+						{ 
+							foreach ($manager as $row):?>
+						<tr>
+							<td>
+								<?php echo "-".$row->user_id;
+								if($this->session->userdata('access')=="10"){?>	
+							</td>					
+								
+								<td>
+									<?php 
 									$onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
-									<?=anchor(base_url()."tasks/delmanager/".$row->task_user_id."/".$row->task_id, 'Delete', $onclick);
-									}?>
-								</p> 						
-								<?php endforeach;
-							}?>	
-						</td>
-						<?php if($this->session->userdata('access')=="10"){ ?>
-						<td>
-							<form action="<?php echo base_url()."tasks/addmanager/".$this->uri->segment(3);?>" method="post">											
-								<input type="hidden" name="task" value="<?php echo $this->uri->segment(3);?>">
-								choisir un utilisateur:
-								<select name="user">
-									<?php foreach ($user as $row): ?>
-									<option  value="<?php echo $row->user_id;?>"><?php echo $row->prename." ".$row->name;?></option>
-									<?php endforeach;?>
-								</select> <br/>	
-								<input type="submit" value="OK">
-							</form>
+									<?=anchor(base_url()."tasks/delmanager/".$row->task_user_id."/".$row->task_id, 'Vider', $onclick);?>									
 							
-						</td>	
-						<?php }?>					
-					</tr>
+								<?php }?>								
+							</td>
+						</tr>					
+						<?php endforeach;
+						}
+						?>						
 				</table>
+				<?php if($this->session->userdata('access')=="10"){?>	
+				<form action="<?php echo base_url()."tasks/addnewmanager/";?>" method="post">											
+					<input type="hidden" name="task" value="<?php echo $this->uri->segment(3);?>">
+					Ajouter un utilisateur:<br/>
+					<select name="user">
+						<?php foreach ($user as $row): ?>
+						<option  value="<?php echo $row->user_id;?>"><?php echo $row->prename." ".$row->name;?></option>
+						<?php endforeach;?>
+					</select> <br/>	
+					<input type="submit" value="OK">
+				</form>		
+				<?php }?>			
 			</td>			
 			<td class="comment">			
 				<a class="btn" href="<?php echo base_url();?>comments/form/<?php echo $this->uri->segment(3);?>/task">Nouveau commentaire</a>				

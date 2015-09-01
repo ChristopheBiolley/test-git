@@ -51,7 +51,7 @@
 							else
 							{ 
 								foreach ($manager as $row):
-								echo $row->user_id;	?>	
+								echo "-".$row->user_id;	?>	
 								<p>
 									<?php if($this->session->userdata('access')=="10"){
 									$onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
