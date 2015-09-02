@@ -31,7 +31,7 @@ if(isset($client))
 	$name=$row->name;
 	$surname=$row->surname;
 	$address1=$row->address1;
-	$address2=$row->address1;
+	$address2=$row->address2;
 	$postal=$row->postal_code;
 	$locality=$row->locality;
 	$fixe=$row->fixe_phone;

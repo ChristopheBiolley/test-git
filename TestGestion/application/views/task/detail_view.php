@@ -58,13 +58,11 @@
 							<td>
 								<?php echo "-".$row->user_id;
 								if($this->session->userdata('access')=="10"){?>	
-							</td>					
-								
-								<td>
-									<?php 
-									$onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
-									<?=anchor(base_url()."tasks/delmanager/".$row->task_user_id."/".$row->task_id, 'Vider', $onclick);?>									
-							
+							</td>											
+							<td>
+								<?php 
+								$onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
+								<?=anchor(base_url()."tasks/delmanager/".$row->task_user_id."/".$row->task_id, 'Vider', $onclick);?>															
 								<?php }?>								
 							</td>
 						</tr>					
@@ -102,7 +100,7 @@
 						<td><?php echo $row->text;?></td>
 						<td><?php echo $row->author;?></td>
 						<td><?php echo $row->date;?></td>
-						<?php if($this->session->userdata('access')=="5"||$this->session->userdata('access')=="10"){ ?>
+						<?php if($this->session->userdata('access')=="5"||$this->session->userdata('access')=="10"){?>
 						<td>
 							<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
 							<?=anchor(base_url()."comments/delete/".$row->comment_id."/".$type."/".$from, 'Delete', $onclick);?>				
@@ -116,7 +114,7 @@
 	</table>	
 		<br/>
 		<?php foreach ($task as $row):?>
-		<a class="btn" href="<?php echo base_url();?>projects/detail/<?php echo $row->project_id ?>">Retour au projet</a>
+		<a class="btn" href="<?php echo base_url();?>projects/detail/<?php echo $row->project_id;?>">Retour au projet</a>
 		<?php endforeach;?>		
 		<br/>
 		<br/>
