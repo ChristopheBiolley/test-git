@@ -2,107 +2,143 @@
 <html>
 	<head>
 		<title>Projet</title>
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/gestion.css">
-		<!-- 
-		<script>
-			function Edition()
-			{				
-				var x = document.getElementById("Edit").style.display;
-				
-				if(x=="none")
-				{
-					document.getElementById("Edit").style.display = "inline";
-					x = document.getElementById("Edit").style.display;
-				}
-				else
-				{
-					document.getElementById("Edit").style.display="none";
-				}
-			}
-		</script>-->
+				<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/gestion.css">		
 	</head>
 	<body>
-		<h3>Projet</h3>
-		<table class="detail">
-			<tr>
-				<th>Titre</th>
-				<th>Description</th>
-				<th>Date de création</th>
-				<th>Auteur</th>
-				<th>Date de démarrage</th>
-				<th>Date de fin</th>
-				<th>Client</th>
-				<th>Status</th>
-			</tr>
-			<?php foreach ($project as $row):?>
-			<tr>			
-				<td><?php echo $row->title;?></td>
-				<td><?php echo $row->description;?></td>
-				<td><?php echo $row->create_date;?></td>
-				<td><?php echo $row->author_user_id;?></td>
-				<td><?php echo $row->start_date;?></td>
-				<td><?php echo $row->end_date;?></td>
-				<td><?php echo $row->client_id;?></td>
-				<td><?php echo $row->status_id;?></td>
-				<td><a class="btn" href="<?php echo base_url();?>projects/form/<?php echo $row->project_id ?>">edition</a></td>	
-			</tr>	
-			<?php endforeach;?>					
-		</table>
-		<br>
-		<div class="task">
-		<h3>Tâches du projet</h3>
-		<table class="detail">
-			<tr>
-				<th>Titre</th>
-				<th>Description</th>
-				<th>Date de création</th>
-				<th>Auteur</th>			
-				<th>Status</th>
-			</tr>		
-			<?php foreach ($task as $row):?>
-			<tr>
-				<td><a href="<?php echo base_url(); ?>tasks/detail/<?php echo $row->task_id?>"><?php echo $row->title;?></a></td>
-				<td><?php echo $row->description;?></td>
-				<td><?php echo $row->create_date;?></td>
-				<td><?php echo $row->author_user_id;?></td>
-				<td><?php echo $row->status_id;?></td>	
-				<td>
-				<?php $onclick = array('class="btn"onclick'=>"return confirm('Are you sure?')");?>
-				<?=anchor(base_url()."tasks/delete/".$row->task_id, 'Delete', $onclick);?>
-				<?php $onclick = array('onclick'=>"return confirm('Are you sure?')");?>
-				</td>					
-			</tr>				
-			<?php endforeach;?>
-		</table>
-		<a class="btn" href="<?php echo base_url();?>tasks/form/<?php echo $this->uri->segment(3);?>">Nouvelle tâche</a>
-		</div>
-		<br/><br/>
-<!-- 
-		<h3>Commentaires</h3>	
-		<table>
-			<tr>
-				<th>Commentaire</th>
-				<th>Auteur</th>
-				<th>Date de création</th>
-			</tr>		
-			<?php foreach ($comment as $row):?>
-			<tr>
-				<td><?php echo $row->text;?></td>
-				<td><?php echo $row->author;?></td>
-				<td><?php echo $row->date;?></td>
-				<td>
-					<form method="post" action="<?php echo base_url(); ?>comments/delete">
-						<input type="hidden" name="id" value="<?php echo $row->comment_id;?>"/>
-						<input type="hidden" name="typeId" value="<?php echo $this->uri->segment(3);?>"/>
-						<input type="hidden" name="type" value="<?php echo $this->uri->segment(1);?>"/>
-						<input type="submit" value="Delete"/>
-					</form>
-				</td>	
-			</tr>	
-			<?php endforeach;?>		
-		</table>  
-			<br/>	 -->
-	
-			<a class="btn" href="http://localhost/test-git/TestGestion/">Retour</a>
+	<table class="all">
+		<tr>
+			<td>
+				<h3>Projet</h3>
+				<table class="detail">
+					<tr>
+						<th>Titre</th>
+						<th>Description</th>
+						<th>Date de création</th>
+						<th>Auteur</th>
+						<th>Date de démarrage</th>
+						<th>Date de fin</th>
+						<th>Client</th>
+						<th>Status</th>
+					</tr>
+					<?php foreach ($project as $row):?>
+					<tr>			
+						<td><?php echo $row->title;?></td>
+						<td><?php echo $row->description;?></td>
+						<td><?php echo $row->create_date;?></td>
+						<td><?php echo $row->author_user_id;?></td>
+						<td><?php echo $row->start_date;?></td>
+						<td><?php echo $row->end_date;?></td>
+						<td><?php echo $row->client_id;?></td>
+						<td><?php echo $row->status_id;?></td>
+						<?php if($this->session->userdata('access')=="5"||$this->session->userdata('access')=="10"){ ?>
+						<td><a class="btn" href="<?php echo base_url();?>projects/form/<?php echo $row->project_id ?>">edition</a></td>	
+						<?php }?>
+					</tr>	
+					<?php endforeach;?>					
+				</table>
+				<br/>				
+				<table>
+					<tr>						
+						<th>Projet attribué à</th>
+					</tr>
+					<tr>					
+						<td>
+							<?php
+							if($manager==NULL)
+							{
+								echo "Non attribué";
+							}
+							else
+							{ 
+								foreach ($manager as $row):
+								echo "-".$row->user_id;	?>	
+								<p>
+									<?php if($this->session->userdata('access')=="10"){
+									$onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
+									<?=anchor(base_url()."projects/delmanager/".$row->project_manager_id."/".$row->project_id, 'Delete', $onclick);
+									}?>
+								</p> 						
+								<?php endforeach;
+							}?>	
+						</td>
+						<?php if($this->session->userdata('access')=="10"){ ?>
+						<td>
+							<form action="<?php echo base_url()."projects/addmanager/".$this->uri->segment(3);?>" method="post">											
+								<input type="hidden" name="project" value="<?php echo $this->uri->segment(3);?>">
+								choisir un utilisateur:
+								<select name="user">
+									<?php foreach ($user as $row): ?>
+									<option  value="<?php echo $row->user_id;?>"><?php echo $row->prename." ".$row->name;?></option>
+									<?php endforeach;?>
+								</select> <br/>	
+								<input type="submit" value="OK">
+							</form>
+						</td>	
+						<?php }?>					
+					</tr>
+				</table>				
+				<br>
+				<h3>Tâches du projet</h3>
+				<table class="detail">
+					<tr>
+						<th>Titre</th>
+						<th>Description</th>
+						<th>Date de création</th>
+						<th>Auteur</th>			
+						<th>Status</th>
+					</tr>		
+					<?php 
+					$type=$this->uri->segment(1);
+					$from=$this->uri->segment(3);
+					foreach ($task as $row):?>
+					<tr>
+						<td><a href="<?php echo base_url(); ?>tasks/detail/<?php echo $row->task_id?>"><?php echo $row->title;?></a></td>
+						<td><?php echo $row->description;?></td>
+						<td><?php echo $row->create_date;?></td>
+						<td><?php echo $row->author_user_id;?></td>
+						<td><?php echo $row->status_id;?></td>	
+						<?php if($this->session->userdata('access')=="5"||$this->session->userdata('access')=="10"){ ?>
+						<td>
+							<?php $onclick = array('class="btn"onclick'=>"return confirm('Are you sure?')");?>
+							<?=anchor(base_url()."tasks/delete/".$row->task_id."/".$type."/".$from, 'Delete', $onclick);?>
+						</td>
+						<?php }?>					
+					</tr>				
+					<?php endforeach;?>
+				</table>
+				<br/>
+				<?php if($this->session->userdata('access')=="5"||$this->session->userdata('access')=="10"){ ?>
+				<a class="btn" href="<?php echo base_url();?>tasks/form/<?php echo $this->uri->segment(3);?>">Nouvelle tâche</a>
+				<?php }?>
+			</td>			
+			<td class="comment">
+				<a class="btn" href="<?php echo base_url();?>comments/form/<?php echo $this->uri->segment(3);?>/project">Nouveau commentaire</a>				
+				<h3>Commentaires</h3>
+				<table class="detail">
+					<tr>
+						<th>Commentaire</th>
+						<th>Auteur</th>
+						<th>Date de création</th>
+					</tr>		
+					<?php 			
+					foreach ($comment as $row):?>
+					<tr>
+						<td><?php echo $row->text;?></td>
+						<td><?php echo $row->author;?></td>
+						<td><?php echo $row->date;?></td>
+						<?php if($this->session->userdata('access')=="5"||$this->session->userdata('access')=="10"){?>
+						<td>
+							<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
+							<?=anchor(base_url()."comments/delete/".$row->comment_id."/".$type."/".$from, 'Delete', $onclick);?>				
+						</td>
+						<?php }?>
+					</tr>	
+					<?php endforeach;?>		
+				</table> 
+			</td>
+		</tr>	
+	</table>	
+	<br/>
+	<a class="btn" href="http://localhost/test-git/TestGestion/">Menu</a>
 	</body>
 </html>

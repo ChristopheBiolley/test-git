@@ -1,4 +1,8 @@
-﻿<script>
+﻿<head>
+	<title>Formulaire</title>
+</head>
+
+<script>
 	function goback()
 	{
 		history.go(-1);
@@ -38,14 +42,12 @@ if($id==0)
 	<textarea name="descr"><?php echo $descr;?></textarea><br/>
 	Auteur:	
 	<select name="author">
-		<option selected>choisir un auteur</option>
 		<?php foreach ($user as $row): ?>
 		<option  value="<?php echo $row->user_id;?>"><?php echo $row->prename." ".$row->name;?></option>
 		<?php endforeach;?>
 	</select> <br/>
 	Client:	
 	<select name="client">
-		<option selected>choisir un client</option>
 		<?php foreach ($client as $row): ?>
 		<option value="<?php echo $row->client_id;?>"><?php echo $row->name." ".$row->surname;?></option>
 		<?php endforeach;?>

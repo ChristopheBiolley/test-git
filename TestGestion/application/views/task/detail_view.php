@@ -2,71 +2,121 @@
 <html>
 	<head>
 		<title>Tâche</title>
-		
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/gestion.css">
 	</head>
 	<body>
-		<h3>Tâche</h3>
-		<table>
-			<tr>
-				<th>Titre</th>
-				<th>Description</th>
-				<th>Date de création</th>
-				<th>Auteur</th>
-				<th>Date de démarrage</th>
-				<th>Status</th>
-				<th>Temps alloué</th>
-				<th>Date de fin</th>
-				<th>Date de validation</th>		
-				<th>Temps estimé</th>
-				<th>Temps réel</th>					
-			</tr>
-			<?php foreach ($task as $row):?>
-			<tr>			
-				<td><?php echo $row->title;?></td>
-				<td><?php echo $row->description;?></td>
-				<td><?php echo $row->create_date;?></td>
-				<td><?php echo $row->author_user_id;?></td>
-				<td><?php echo $row->start_date;?></td>
-				<td><?php echo $row->status_id;?></td>
-				<td><?php echo $row->time_allowed;?></td>
-				<td><?php echo $row->end_date;?></td>
-				<td><?php echo $row->validation_date;?></td>
-				<td><?php echo $row->time_estimate;?></td>
-				<td><?php echo $row->time_real;?></td>
-				<td><a href="<?php echo base_url();?>tasks/form/<?php echo $row->task_id ?>">edition</a></td>	
-			</tr>	
-			<?php endforeach;?>					
-		</table>
-		<br>
-		<a href="<?php echo base_url();?>projects/detail/<?php echo $row->project_id ?>">Retour</a>
+	<table>
+		<tr>
+			<td>
+				<h3>Tâche</h3>
+				<table class="detail">
+					<tr>
+						<th>Titre</th>
+						<th>Description</th>
+						<th>Date de création</th>
+						<th>Auteur</th>
+						<th>Date de démarrage</th>
+						<th>Status</th>
+						<th>Temps alloué</th>
+						<th>Date de fin</th>
+						<th>Date de validation</th>		
+						<th>Temps estimé</th>
+						<th>Temps réel</th>					
+					</tr>
+					<?php foreach ($task as $row):?>
+					<tr>			
+						<td><?php echo $row->title;?></td>
+						<td><?php echo $row->description;?></td>
+						<td><?php echo $row->create_date;?></td>
+						<td><?php echo $row->author_user_id;?></td>
+						<td><?php echo $row->start_date;?></td>
+						<td><?php echo $row->status_id;?></td>
+						<td><?php echo $row->time_allowed;?></td>
+						<td><?php echo $row->end_date;?></td>
+						<td><?php echo $row->validation_date;?></td>
+						<td><?php echo $row->time_estimate;?></td>
+						<td><?php echo $row->time_real;?></td>
+						<?php if($this->session->userdata('access')=="5"||$this->session->userdata('access')=="10"){ ?>
+						<td><a class="btn" href="<?php echo base_url();?>tasks/form/<?php echo $row->task_id ;?>">edition</a></td>
+						<?php }?>	
+					</tr>	
+					<?php endforeach;?>		
+				</table>	
+				<br/>	
+				Tâche attribuée à :									
+				<table>																			
+						<?php
+						if($manager==NULL)
+						{
+							?><tr><td><?php echo "Non attribué";?></td></tr><?php 
+						}
+						else
+						{ 
+							foreach ($manager as $row):?>
+						<tr>
+							<td>
+								<?php echo "-".$row->user_id;
+								if($this->session->userdata('access')=="10"){?>	
+							</td>											
+							<td>
+								<?php 
+								$onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
+								<?=anchor(base_url()."tasks/delmanager/".$row->task_user_id."/".$row->task_id, 'Vider', $onclick);?>															
+								<?php }?>								
+							</td>
+						</tr>					
+						<?php endforeach;
+						}
+						?>						
+				</table>
+				<?php if($this->session->userdata('access')=="10"){?>	
+				<form action="<?php echo base_url()."tasks/addnewmanager/";?>" method="post">											
+					<input type="hidden" name="task" value="<?php echo $this->uri->segment(3);?>">
+					Ajouter un utilisateur:<br/>
+					<select name="user">
+						<?php foreach ($user as $row): ?>
+						<option  value="<?php echo $row->user_id;?>"><?php echo $row->prename." ".$row->name;?></option>
+						<?php endforeach;?>
+					</select> <br/>	
+					<input type="submit" value="OK">
+				</form>		
+				<?php }?>			
+			</td>			
+			<td class="comment">			
+				<a class="btn" href="<?php echo base_url();?>comments/form/<?php echo $this->uri->segment(3);?>/task">Nouveau commentaire</a>				
+				<h3>Commentaires</h3>	
+				<table class="detail">
+					<tr>
+						<th>Commentaire</th>
+						<th>Auteur</th>
+						<th>Date de création</th>						
+					</tr>		
+					<?php 			
+					$type=$this->uri->segment(1);	
+					$from=$this->uri->segment(3);
+					foreach ($comment as $row):?>
+					<tr>
+						<td><?php echo $row->text;?></td>
+						<td><?php echo $row->author;?></td>
+						<td><?php echo $row->date;?></td>
+						<?php if($this->session->userdata('access')=="5"||$this->session->userdata('access')=="10"){?>
+						<td>
+							<?php $onclick = array('class="btn" onclick'=>"return confirm('Are you sure?')");?>
+							<?=anchor(base_url()."comments/delete/".$row->comment_id."/".$type."/".$from, 'Delete', $onclick);?>				
+						</td>
+						<?php }?>
+					</tr>	
+					<?php endforeach;?>		
+				</table>  
+			</td>
+		</tr>	
+	</table>	
 		<br/>
-		<a href="<?php echo base_url();?>">Menu</a>
-<!-- 
-		<h3>Commentaires</h3>	
-		<table>
-			<tr>
-				<th>Commentaire</th>
-				<th>Auteur</th>
-				<th>Date de création</th>
-			</tr>		
-			<?php foreach ($comment as $row):?>
-			<tr>
-				<td><?php echo $row->text;?></td>
-				<td><?php echo $row->author;?></td>
-				<td><?php echo $row->date;?></td>
-				<td>
-					<form method="post" action="<?php echo base_url(); ?>comments/delete">
-						<input type="hidden" name="id" value="<?php echo $row->comment_id;?>"/>
-						<input type="hidden" name="typeId" value="<?php echo $this->uri->segment(3);?>"/>
-						<input type="hidden" name="type" value="<?php echo $this->uri->segment(1);?>"/>
-						<input type="submit" value="Delete"/>
-					</form>
-				</td>	
-			</tr>	
-			<?php endforeach;?>		
-		</table>  
-			<br/>	
-		 -->
-			
+		<?php foreach ($task as $row):?>
+		<a class="btn" href="<?php echo base_url();?>projects/detail/<?php echo $row->project_id;?>">Retour au projet</a>
+		<?php endforeach;?>		
+		<br/>
+		<br/>
+		<a class="btn" href="<?php echo base_url();?>">Menu</a>
 	</body>
 </html>

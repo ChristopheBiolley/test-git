@@ -1,5 +1,4 @@
 ﻿<?php
-
 class Project_model extends CI_Model
 {
     public function __construct() 
@@ -10,10 +9,7 @@ class Project_model extends CI_Model
 
     public function get_status()
     {
-    	$this->load->database();
-    	 
-    	$query = $this->db->get('gestion.project_status');
-    
+    	$query = $this->db->get('gestion.project_status');    
     	$data=$query->result();
     
     	return $data;
@@ -69,7 +65,6 @@ class Project_model extends CI_Model
 	    			'client_id'=>$this->input->post('client'),
 	    			'status_id'=>$this->input->post('status'),
 	    			'author_user_id'=>$this->input->post('author')
-
 	    	);
 	    	$this->db->insert('gestion.project', $data);
     	}
@@ -92,29 +87,61 @@ class Project_model extends CI_Model
     public function del_project($id)
     {    	
     	if($id==0)
-    	{
-    		
+    	{    		
     	}
     	else 
     	{
     		$this->db->delete('gestion.project', array('project_id' => $id));
     	}    	   	
     }
-   /*
-    public function add_manager($user_id,$project_id) 
-    {
+   
+    
+    public function get_manager($project_id) 
+    {   	   	
     	
+    	$query = $this->db->get_where('gestion.project_manager',array('project_id' => $project_id));
+    	$data=$query->result(); 
     	
-    	$data=array(
-    		'user_id'=>$user_id,
-    		'project_id'=>$project_id
-    	);
-    	$this->db->insert('gestion.project_manager', $data);
+	    	foreach ($data as $row)
+	    	{
+		    	//avoir auteur
+		    	$userId=$row->user_id;
+		    	$query = $this->db->get_where('gestion.user',array('user_id'=>$userId));
+		    	$user=$query->row();
+		    	$row->user_id=$user->prename." ".$user->name;
+		    	//////////////////	
+	    	}    	
+    	
+    	return $data;
     }
-
-    public function del_manager($user_id,$project_id) 
+    
+    public function set_manager($id=0)
     {
-    	
-    	$this->db->delete('gestion.project_manager', array('project_id' => $project_id,'user_id'=>$user_id));
-    }*/
+    	if($id==0)
+    	{
+    		$data = array(
+    				'project_id'=>$this->input->post('project'),
+    				'user_id'=>$this->input->post('user')
+    		);
+    		$this->db->insert('gestion.project_manager', $data);
+    	}
+    	else
+    	{
+    		$data = array(
+    				'user_id'=>$this->input->post('user')
+    		);
+    		$this->db->where('project_manager_id', $id);
+    		$this->db->update('gestion.project_manager', $data);
+    	}
+    }
+ public function del_manager($id) 
+    {
+    	if($id==0)
+    	{
+    	}
+    	else
+    	{
+    		$this->db->delete('gestion.project_manager', array('project_manager_id' => $id));
+    	}
+    }
 }

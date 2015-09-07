@@ -1,3 +1,6 @@
+<head>
+	<title>Formulaire</title>
+</head>
 <script>
 	function goback()
 	{
@@ -8,8 +11,9 @@
 $title="";
 $descr="";
 $id=0;
-$url=base_url()."tasks/add";
 $project_id=$this->uri->segment(3);
+$url=base_url()."tasks/add/".$project_id;
+
 
 if(isset($task))
 {
@@ -44,7 +48,6 @@ if($id==0)
 	<textarea name="descr"><?php echo $descr;?></textarea><br/>
 	Auteur:	
 	<select name="author">
-		<option selected>choisir un auteur</option>
 		<?php foreach ($user as $row): ?>
 		<option  value="<?php echo $row->user_id;?>"><?php echo $row->prename." ".$row->name;?></option>
 		<?php endforeach;?>
@@ -56,7 +59,6 @@ if($id==0)
 else
 {
 ?>
-
 <form method="post" action="<?php echo $url;?>">
 	<input type="hidden" name=id value="<?php echo $id;?>"/>		
 	<!-- <input type="hidden" name="URL" value="<?php echo current_url();?>"/> -->
