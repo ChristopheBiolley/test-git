@@ -44,8 +44,7 @@
 				</table>	
 				<br/>	
 				Tâche attribuée à :									
-				<table>					
-															
+				<table>																			
 						<?php
 						if($manager==NULL)
 						{
